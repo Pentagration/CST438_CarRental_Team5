@@ -29,17 +29,4 @@ Video link
 
 
 
-```mermaid
-graph RL
-A(<B>CarReservations DB</B><br/>CustID - Long?<br/>CPLocation - String <br/>CPDate - DateTime <br/>CPTime - Datetime... Consolidate?<br/><br/>CRLocation - String<br/>CRDate - DateTime <br/>CRTime - Datetime... Consolidate? ) 
-
-B(<B>CarInventory DB</B><br/>CType - SUV, FS, ECON, COMP <br/>CPrice - Float <br/>CAvail - Bool)
-
-C(<B>Car Reservation Form</B><br/>CPLocation<br/>CPDate<br/>CPTime<br/>CRLocation <br/>)
-
-
-A --> B
-C --> A
-
-
-```
+[![](https://mermaid.ink/img/eyJjb2RlIjoiIGNsYXNzRGlhZ3JhbVxuICAgICAgQW5pbWFsIDx8LS0gRHVja1xuICAgICAgQW5pbWFsIDx8LS0gRmlzaFxuICAgICAgQW5pbWFsIDx8LS0gWmVicmFcbiAgICAgIEFuaW1hbCA6ICtpbnQgYWdlXG4gICAgICBBbmltYWwgOiArU3RyaW5nIGdlbmRlclxuICAgICAgQW5pbWFsOiAraXNNYW1tYWwoKVxuICAgICAgQW5pbWFsOiArbWF0ZSgpXG4gICAgICBjbGFzcyBEdWNre1xuICAgICAgICAgICtTdHJpbmcgYmVha0NvbG9yXG4gICAgICAgICAgK3N3aW0oKVxuICAgICAgICAgICtxdWFjaygpXG4gICAgICB9XG4gICAgICBjbGFzcyBGaXNoe1xuICAgICAgICAgIC1pbnQgc2l6ZUluRmVldFxuICAgICAgICAgIC1jYW5FYXQoKVxuICAgICAgfVxuICAgICAgY2xhc3MgWmVicmF7XG4gICAgICAgICAgK2Jvb2wgaXNfd2lsZFxuICAgICAgICAgICtydW4oKVxuICAgICAgfSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiIGNsYXNzRGlhZ3JhbVxuICAgICAgQW5pbWFsIDx8LS0gRHVja1xuICAgICAgQW5pbWFsIDx8LS0gRmlzaFxuICAgICAgQW5pbWFsIDx8LS0gWmVicmFcbiAgICAgIEFuaW1hbCA6ICtpbnQgYWdlXG4gICAgICBBbmltYWwgOiArU3RyaW5nIGdlbmRlclxuICAgICAgQW5pbWFsOiAraXNNYW1tYWwoKVxuICAgICAgQW5pbWFsOiArbWF0ZSgpXG4gICAgICBjbGFzcyBEdWNre1xuICAgICAgICAgICtTdHJpbmcgYmVha0NvbG9yXG4gICAgICAgICAgK3N3aW0oKVxuICAgICAgICAgICtxdWFjaygpXG4gICAgICB9XG4gICAgICBjbGFzcyBGaXNoe1xuICAgICAgICAgIC1pbnQgc2l6ZUluRmVldFxuICAgICAgICAgIC1jYW5FYXQoKVxuICAgICAgfVxuICAgICAgY2xhc3MgWmVicmF7XG4gICAgICAgICAgK2Jvb2wgaXNfd2lsZFxuICAgICAgICAgICtydW4oKVxuICAgICAgfSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
