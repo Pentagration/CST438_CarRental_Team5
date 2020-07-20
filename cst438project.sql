@@ -18,13 +18,14 @@
 --
 -- Table structure for table `car`
 --
+DROP SCHEMA IF EXISTS `cst438carRental` ;
 CREATE SCHEMA `cst438carRental` ;
 DROP TABLE IF EXISTS `cst438carRental`.`car`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cst438carRental`.`car` (
-  `carID` int(11) NOT NULL,
-  `type` int(11) DEFAULT NULL,
+  `carID` int(11) NOT NULL auto_increment,
+  `type` varchar(45) DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
   `available` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`carID`)
@@ -48,7 +49,7 @@ DROP TABLE IF EXISTS `cst438carRental`.`customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cst438carRental`.`customer` (
-  `customerID` int(11) NOT NULL,
+  `customerID` int(11) NOT NULL auto_increment,
   `email` varchar(45) DEFAULT NULL,
   `fName` varchar(45) DEFAULT NULL,
   `lName` varchar(45) DEFAULT NULL,
@@ -73,13 +74,14 @@ DROP TABLE IF EXISTS `cst438carRental`.`reservation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cst438carRental`.`reservation` (
+  `reservationID` int(11) NOT NULL auto_increment,
   `customerID` int(11) NOT NULL,
   `carID` int(11) DEFAULT NULL,
-  `pickupDate` datetime DEFAULT NULL,
-  `returnDate` datetime DEFAULT NULL,
+  `pickupDate` date DEFAULT NULL,
+  `returnDate` date DEFAULT NULL,
   `pickupLocation` varchar(45) DEFAULT NULL,
   `returnLocation` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`customerID`)
+  PRIMARY KEY (`reservationID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -102,3 +104,4 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2020-07-19 19:16:54
+
