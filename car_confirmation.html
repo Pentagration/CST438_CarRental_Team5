@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:td="http://www.w3.org/1999/xhtml">
+<html xmlns:th="www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=50%">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <title>Car Reservation Confirmation</title>
+</head>
+<body>
+<div class="container">
+  <br>
+  <h2>Team 5 Rent-A-Car</h2>
+<h2>Car Rental Confirmation</h2>
+  <div class="border border-danger p-4 w-50">
+<table>
+  <tbody>
+    <tr>
+      <td>Confirmation Number:</td>
+      <td th:text="${carInfo.carId}"></td>
+    </tr>
+    <tr>
+      <td>First Name:</td>
+      <td th:text="${carInfo.fName}"></td>
+    </tr>
+    <tr>
+      <td>Last Name:</td>
+      <td th:text="${carInfo.lName}"></td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td th:text="${carInfo.email}"></td>
+    </tr>
+    <tr>
+      <td>Pick-Up Date:</td>
+      <td th:text="${carInfo.pickupDate}"></td>
+    </tr>
+    <tr>
+      <td>Drop-Off Date:</td>
+      <td th:text="${carInfo.returnDate}"></td>
+    </tr>
+    <tr>
+      <td>Car Type:</td>
+      <td th:text="${carInfo.type}"></td>
+    </tr>
+  </tbody>
+</table>
+  <br>
+  <form method="post">
+    <input type="submit" value="Cancel" class="btn btn-danger">
+  </form>
+  </div>
+</div>
+</body>
+</html>
