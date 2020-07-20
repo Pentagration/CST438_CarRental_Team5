@@ -19,7 +19,7 @@
     <!-- 	<form action="#" th:action="@{/movie/new}" th:object="${rating}" method="post"> -->
     <!-- we may need to change the form initialization similar to the above from our movie rating -->
     <form method="post" class="needs-validation" novalidate>
-      
+
   <div class="form-group">
     <label for="fName">First Name: </label>
     <input type="text" id="fName" name="fName" class="form-control" placeholder="Enter First Name" required>
@@ -49,13 +49,13 @@
   </div>
 
   <div class="form-group">
-    <label for="returnDate">Drop-off Date: </label>
+    <label for="returnDate">Drop-Off Date: </label>
     <input type="date" id="returnDate" name="returnDate" class="form-control" required>
       <div class="valid-feedback"></div>
       <div class="invalid-feedback">Please provide your preferred drop-off date.</div>
   </div>
 
-  <label for="type">Choose a car type:</label>
+  <label for="type">Choose a Car Type:</label>
     <select name="type" id="type" class="form-control" required>
       <option value="">Please select a car type</option>
       <option value="SUV">SUV (6-8 people) $150.00/day</option>
@@ -66,7 +66,7 @@
     <div class="valid-feedback"></div>
     <div class="invalid-feedback">Please select your preferred car type from the list.</div><br>
 
-  <input type="submit" value="submit" class="btn btn-primary">
+  <input type="submit" value="Submit" class="btn btn-primary">
   </div>
 
     <script>
@@ -90,5 +90,6 @@
       })();
     </script>
 </form>
+</div>
 </body>
 </html>
