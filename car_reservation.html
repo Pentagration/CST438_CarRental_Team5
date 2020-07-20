@@ -3,56 +3,91 @@
 <html xmlns:th="www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=50%">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <title>Car Reservation</title>
-  <style>
-    input{
-      padding-top: 5px;
-      padding-bottom: 5px;
-      margin: 10px;
-    }
-    select{
-      padding-top: 5px;
-      padding-bottom: 5px;
-      margin: 10px;
-    }
-  </style>
 </head>
 <body>
-<h2>Team 5 Rent-A-Car</h2>
-
 <!-- 	<form action="#" th:action="@{/movie/new}" th:object="${rating}" method="post"> -->
 <!-- we may need to change the form initialization similar to the above from our movie rating -->
-<div>
-<b> All fields are required</b>
-<form method="post">
-
+<div class="container">
+  <br>
+  <h2>Team 5 Rent-A-Car</h2>
+  <div class="border border-danger p-4 w-50">
+  <form method="post" class="needs-validation" novalidate>
+  <div class="form-group">
   <label for="fName">First Name: </label>
-  <input type="text" id="fName" name="fName" required><br>
+  <input type="text" id="fName" name="fName" class="form-control" placeholder="Enter First Name" required>
+    <div class="valid-feedback"></div>
+    <div class="invalid-feedback">Please fill out this field.</div>
+  </div>
 
+  <div class="form-group">
   <label for="lName">Last Name: </label>
-  <input type="text" id="lName" name="lName" required><br>
+  <input type="text" id="lName" name="lName" class="form-control" placeholder="Enter Last Name" required>
+    <div class="valid-feedback"></div>
+    <div class="invalid-feedback">Please fill out this field.</div>
+  </div>
 
+  <div class="form-group">
   <label for="email">Email: </label>
-  <input type="email" id="email" name="email" required><br>
+  <input type="email" id="email" name="email" class="form-control" placeholder="Enter email" required>
+    <div class="valid-feedback"></div>
+    <div class="invalid-feedback">Please fill out this field.</div>
+  </div>
 
+  <div class="form-group">
   <label for="pickupDate">Pick-Up Date: </label>
-  <input type="date" id="pickupDate" name="pickupDate" required><br>
+  <input type="date" id="pickupDate" name="pickupDate" class="form-control" required>
+    <div class="valid-feedback"></div>
+    <div class="invalid-feedback">Please fill out this field.</div>
+  </div>
 
+  <div class="form-group">
   <label for="returnDate">Drop-off Date: </label>
-  <input type="date" id="returnDate" name="returnDate" required><br>
+  <input type="date" id="returnDate" name="returnDate" class="form-control" required>
+    <div class="valid-feedback"></div>
+    <div class="invalid-feedback">Please fill out this field.</div>
+  </div>
 
   <label for="type">Choose a car type:</label>
 
-  <select name="type" id="type" required>
+  <select name="type" id="type" class="form-control" required>
     <option value="">Please select a car type</option>
     <option value="SUV">SUV (6-8 people) $150.00/day</option>
     <option value="FS">Full-size (4-5 people) $125.00/day</option>
     <option value="ECON">Economy (4 people) $110.00/day</option>
     <option value="COMP">Compact (2 people) $5.00/day</option>
-  </select></br>
+  </select>
+    <div class="valid-feedback"></div>
+    <div class="invalid-feedback">Please select an option from the list.</div><br>
 
-  <input type="submit" value="submit">
-</div>
+  <input type="submit" value="submit" class="btn btn-primary">
+  </div>
+
+    <script>
+      // Disable form submissions if there are invalid fields
+      (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+          // Get the forms we want to add validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    </script>
 </form>
 </body>
 </html>
