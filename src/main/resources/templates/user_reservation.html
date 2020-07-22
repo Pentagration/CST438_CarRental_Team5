@@ -1,12 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=50%">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <title>User Reservations</title>
 </head>
 <body>
- <p>User Reservations</p>
+<div class="container">
+  <br>
+  <h2>Team 5 Rent-A-Car</h2>
+<h2>User Reservations</h2>
+  <div class="border border-danger p-4 w-50">
+    <a href="/reservation/new" class="btn btn-danger"> New Reservation</a>
+  <br><br>
  <td>Email:</td>
- <td th:text="${email}"></td>
+  <span th:text="${email}"></span>
+
+  </div>
+</div>
 </body>
 </html>

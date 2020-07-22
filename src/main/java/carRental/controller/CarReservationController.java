@@ -26,7 +26,8 @@ public class CarReservationController {
   @PostMapping("")
   public String searchReservationsEmail(@RequestParam("email") String email, Model model) {
 	  // function(email);
-	  return "user_reservations";
+	  model.addAttribute("email", email);
+	  return "user_reservation";
   }
 
     /*
