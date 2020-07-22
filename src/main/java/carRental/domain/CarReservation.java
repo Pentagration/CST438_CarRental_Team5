@@ -1,6 +1,7 @@
 package carRental.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -10,6 +11,7 @@ import javax.validation.constraints.NotEmpty;
 public class CarReservation {
 
   @Id
+  @GeneratedValue
   private long customerID;
   private long carID;
   @NotEmpty
