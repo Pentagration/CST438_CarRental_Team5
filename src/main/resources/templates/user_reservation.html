@@ -19,6 +19,57 @@
   <br><br>
  <td>Email:</td>
   <span th:text="${email}"></span>
+  
+  <table>
+		<tr th:each="carReservation: ${reservations}">
+			<div class="border border-danger p-4 w-50">
+<table>
+  <tbody>
+    <tr>
+      <td>Confirmation Number:</td>
+      <td th:text="${carReservation.customerID}"></td>
+    </tr>
+    <tr>
+      <td>Car ID:</td>
+      <td th:text="${carReservation.carID}"></td>
+    </tr>
+    <tr>
+      <td>First Name:</td>
+      <td th:text="${carReservation.fName}"></td>
+    </tr>
+    <tr>
+      <td>Last Name:</td>
+      <td th:text="${carReservation.lName}"></td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td th:text="${carReservation.email}"></td>
+    </tr>
+    <tr>
+      <td>Pick-Up Location:</td>
+      <td th:text="${carReservation.pickupLocation}"></td>
+    </tr>
+    <tr>
+      <td>Pick-Up Date:</td>
+      <td th:text="${carReservation.pickupDate}"></td>
+    </tr>
+    <tr>
+      <td>Drop-Off Location:</td>
+      <td th:text="${carReservation.returnLocation}"></td>
+    </tr>
+    <tr>
+      <td>Drop-Off Date:</td>
+      <td th:text="${carReservation.returnDate}"></td>
+    </tr>
+    <tr>
+      <td>Car Type:</td>
+      <td th:text="${carReservation.type}"></td>
+    </tr>
+  </tbody>
+</table>
+  <br>
+		</tr>
+	</table>
 
   </div>
 </div>
