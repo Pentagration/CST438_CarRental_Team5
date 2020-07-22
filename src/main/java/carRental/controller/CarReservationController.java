@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CarReservationController {
@@ -17,7 +18,15 @@ public class CarReservationController {
   
   @GetMapping("")
   public String index(Model model) {
+	  String email = new String();
+	  model.addAttribute("email", email);
 	  return "index";
+  }
+  
+  @PostMapping("")
+  public String searchReservationsEmail(@RequestParam("email") String email, Model model) {
+	  // function(email);
+	  return "user_reservations";
   }
 
     /*
