@@ -13,6 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class CarReservationController {
   @Autowired
   private CarReservationRepository carReservationRepository;
+  
+  
+  @GetMapping("")
+  public String index(Model model) {
+	  return "index";
+  }
 
     /*
   localhost:8080/reservation/new
