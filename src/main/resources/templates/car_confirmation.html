@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:td="http://www.w3.org/1999/xhtml">
 <html xmlns:th="www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
@@ -20,31 +19,43 @@
   <tbody>
     <tr>
       <td>Confirmation Number:</td>
-      <td th:text="${carInfo.carId}"></td>
+      <td th:text="${carReservation.customerID}"></td>
+    </tr>
+    <tr>
+      <td>Car ID:</td>
+      <td th:text="${carReservation.carID}"></td>
     </tr>
     <tr>
       <td>First Name:</td>
-      <td th:text="${carInfo.fName}"></td>
+      <td th:text="${carReservation.fName}"></td>
     </tr>
     <tr>
       <td>Last Name:</td>
-      <td th:text="${carInfo.lName}"></td>
+      <td th:text="${carReservation.lName}"></td>
     </tr>
     <tr>
       <td>Email:</td>
-      <td th:text="${carInfo.email}"></td>
+      <td th:text="${carReservation.email}"></td>
+    </tr>
+    <tr>
+      <td>Pick-Up Location:</td>
+      <td th:text="${carReservation.pickupLocation}"></td>
     </tr>
     <tr>
       <td>Pick-Up Date:</td>
-      <td th:text="${carInfo.pickupDate}"></td>
+      <td th:text="${carReservation.pickupDate}"></td>
+    </tr>
+    <tr>
+      <td>Drop-Off Location:</td>
+      <td th:text="${carReservation.returnLocation}"></td>
     </tr>
     <tr>
       <td>Drop-Off Date:</td>
-      <td th:text="${carInfo.returnDate}"></td>
+      <td th:text="${carReservation.returnDate}"></td>
     </tr>
     <tr>
       <td>Car Type:</td>
-      <td th:text="${carInfo.type}"></td>
+      <td th:text="${carReservation.type}"></td>
     </tr>
   </tbody>
 </table>
