@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:td="http://www.w3.org/1999/xhtml">
+<html xmlns:th="www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=50%">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <title>Car Reservation</title>
+</head>
+<body>
+<div class="container">
+  <br>
+  <h2>Team 5 Rent-A-Car</h2>
+  <div class="border border-danger p-4 w-50">
+
+    <!-- 	<form action="#" th:action="@{/movie/new}" th:object="${rating}" method="post"> -->
+    <!-- we may need to change the form initialization similar to the above from our movie rating -->
+    <form action="#" th:action="@{/reservation/new}" th:object="${reservation}"
+          method="post" class="needs-validation" novalidate>
+
+  <div class="form-group">
+    <label for="fName">First Name: </label>
+    <input type="text" id="fName" th:field="*{fName}" class="form-control"
+           placeholder="Enter First Name" required>
+    <span th:if="${#fields.hasErrors('fName')}" th:errors="*{fName}"> </span>
+    <div class="valid-feedback"></div>
+      <div class="invalid-feedback">Please fill out your first name.</div>
+  </div>
+
+  <div class="form-group">
+    <label for="lName">Last Name: </label>
+    <input type="text" id="lName" th:field="*{lName}" class="form-control"
+           placeholder="Enter Last Name" required>
+    <span th:if="${#fields.hasErrors('lName')}" th:errors="*{lName}"> </span>
+    <div class="valid-feedback"></div>
+      <div class="invalid-feedback">Please fill out your last name.</div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email: </label>
+    <input type="email" id="email" th:field="*{email}" class="form-control"
+           placeholder="Enter email" required>
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"> </span>
+    <div class="valid-feedback"></div>
+      <div class="invalid-feedback">Please provide a valid email.</div>
+  </div>
+
+  <div class="form-group">
+    <label for="pickupLocation">Pick-Up Location: </label>
+    <input type="text" id="pickupLocation" th:field="*{pickupLocation}" class="form-control"
+           placeholder="City"required>
+    <span th:if="${#fields.hasErrors('pickupLocation')}" th:errors="*{pickupLocation}"> </span>
+    <div class="valid-feedback"></div>
+    <div class="invalid-feedback">Please provide your preferred pick-up location.</div>
+  </div>
+
+  <div class="form-group">
+    <label for="pickupDate">Pick-Up Date: </label>
+    <input type="date" id="pickupDate" th:field="*{pickupDate}" class="form-control" required>
+    <span th:if="${#fields.hasErrors('pickupDate')}" th:errors="*{pickupDate}"> </span>
+    <div class="valid-feedback"></div>
+    <div class="invalid-feedback">Please provide your preferred drop-off date.</div>
+  </div>
+
+  <div class="form-group">
+    <label for="returnLocation">Drop-Off Location: </label>
+    <input type="text" id="returnLocation" th:field="*{returnLocation}" class="form-control"
+           placeholder="City" required>
+    <span th:if="${#fields.hasErrors('returnLocation')}" th:errors="*{returnLocation}"> </span>
+    <div class="valid-feedback"></div>
+    <div class="invalid-feedback">Please provide your preferred drop-off location.</div>
+  </div>
+
+
+  <div class="form-group">
+    <label for="returnDate">Drop-Off Date: </label>
+    <input type="date" id="returnDate" th:field="*{returnDate}" class="form-control" required>
+    <span th:if="${#fields.hasErrors('returnDate')}" th:errors="*{returnDate}"> </span>
+    <div class="valid-feedback"></div>
+      <div class="invalid-feedback">Please provide your preferred drop-off date.</div>
+  </div>
+
+  <label for="type">Choose a Car Type:</label>
+    <select id="type" th:field="*{type}" class="form-control" required>
+      <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}"> </span>
+      <option value="">Please select a car type</option>
+      <option value="SUV">SUV (6-8 people) $150.00/day</option>
+      <option value="FS">Full-size (4-5 people) $125.00/day</option>
+      <option value="ECON">Economy (4 people) $110.00/day</option>
+      <option value="COMP">Compact (2 people) $5.00/day</option>
+    </select>
+    <div class="valid-feedback"></div>
+    <div class="invalid-feedback">Please select your preferred car type from the list.</div><br>
+
+  <input type="submit" value="Submit" class="btn btn-primary">
+  </div>
+
+    <script>
+      // Disable form submissions if there are invalid fields
+      (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+          // Get the forms we want to add validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    </script>
+</form>
+</div>
+</body>
+</html>
