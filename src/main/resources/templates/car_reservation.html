@@ -83,9 +83,9 @@
     <select id="type" th:field="*{type}" class="form-control" required>
       <option value="">Please select a car type</option>
       <option value="SUV">SUV (6-8 people) $150.00/day</option>
-      <option value="FS">Full-size (4-5 people) $125.00/day</option>
-      <option value="ECON">Economy (4 people) $110.00/day</option>
-      <option value="COMP">Compact (2 people) $5.00/day</option>
+      <option value="Fullsize">Full-size (4-5 people) $125.00/day</option>
+      <option value="Economy">Economy (4 people) $110.00/day</option>
+      <option value="Compact">Compact (2 people) $5.00/day</option>
     </select>
       <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}"> </span>
     <div class="valid-feedback"></div>

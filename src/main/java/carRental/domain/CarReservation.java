@@ -13,10 +13,10 @@ public class CarReservation {
   @Id
   @GeneratedValue
   private long customerID;
+  @GeneratedValue
   private long carID;
   @NotEmpty
   private String fName;
-  @NotEmpty
   private String lName;
   private String email;
   private String pickupLocation;
