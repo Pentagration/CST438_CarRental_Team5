@@ -2,6 +2,7 @@ package carRental.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 //@Table(name="reservation")
@@ -10,7 +11,9 @@ public class CarReservation {
   @Id
   private long customerID;
   private long carID;
+  @NotEmpty
   private String fName;
+  @NotEmpty
   private String lName;
   private String email;
   private String pickupLocation;

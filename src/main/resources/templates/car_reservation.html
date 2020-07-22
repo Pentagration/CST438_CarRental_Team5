@@ -6,7 +6,7 @@
 <body>
 <h2>Team 5 Rent-A-Car</h2>
 <form action="#" th:action="@{/reservation/new}" th:object="${carReservation}"
-        method="post" />
+        method="post" >
 
   First Name: <input type="text" th:field="*{fName}" />
     <span th:if="${#fields.hasErrors('fName')}" th:errors="*{fName}"> </span><br>

@@ -25,14 +25,14 @@ public class CarReservationController {
     return "car_reservation";
   }
 
-    /*
+  /*
   localhost:8080/reservation/new
   presents the user the car_confirmation.html page to fill-out
    */
-    @PostMapping("/reservation/new")
-    public String processCarReservation(@Valid CarReservation carReservation,
-        BindingResult result, Model model){
-          carReservationRepository.save(carReservation);
-          return "car_confirmation";
-    }
+  @PostMapping("/reservation/new")
+  public String processCarReservation(@Valid CarReservation carReservation,
+      BindingResult result, Model model){
+    carReservationRepository.save(carReservation);
+    return "car_confirmation";
+  }
 }
