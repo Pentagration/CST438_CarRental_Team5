@@ -1,6 +1,6 @@
 package carRental.controller;
 
-import carRental.domain.CarReservation;
+import carRental.domain.*;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class CarReservationController {
   @Autowired
-  carRental.domain.CarReservationRepository CarReservationRepository;
+  private CarReservationRepository carReservationRepository;
 
     /*
   localhost:8080/reservation/new
@@ -32,7 +32,7 @@ public class CarReservationController {
     @PostMapping("/reservation/new")
     public String processCarReservation(@Valid CarReservation carReservation,
         BindingResult result, Model model){
-          CarReservationRepository.save(carReservation);
+          carReservationRepository.save(carReservation);
           return "car_confirmation";
     }
 }
