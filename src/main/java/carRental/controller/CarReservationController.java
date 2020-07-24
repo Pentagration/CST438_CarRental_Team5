@@ -23,10 +23,13 @@ public class CarReservationController {
 	  return "index";
   }
   
+  
   @PostMapping("")
   public String searchReservationsEmail(@RequestParam("email") String email, Model model) {
-	  // function(email);
-	  return "user_reservations";
+	  //Iterable<CarReservation> reservations = carReservationRepository.findAll();
+	  Iterable<CarReservation> reservations = carReservationRepository.findByEmail(email);
+	  model.addAttribute("reservations", reservations);
+	  return "user_reservation";
   }
 
     /*
