@@ -51,6 +51,9 @@ public class CarReservationController {
   public String processCarReservation(@Valid CarReservation carReservation,
       BindingResult result, Model model){
     carReservationRepository.save(carReservation);
+    if (result.hasErrors()) {
+      return "car_reservation";
+    }
     return "car_confirmation";
   }
 }
