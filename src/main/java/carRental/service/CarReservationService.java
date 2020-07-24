@@ -14,16 +14,16 @@ public class CarReservationService {
 
   // to find a reservation by an id
   // currently written with reservation ID, but may need to change
-  public CarReservation getResInfo(int resID) {
-
-    List<CarReservation> carReservation = (List<CarReservation>) carReservationRepository.findByID(resID);
-    // check to see if there is even a return
-    if (carReservation.size() == 0) {
-      return null;
-    }
-    // return the first (only) car reservation (type CarReservation)
-    return carReservation.get(0);
-  }
+//  public CarReservation getResInfo(int resID) {
+//
+//    List<CarReservation> carReservation = (List<CarReservation>) carReservationRepository.findByID(resID);
+//    // check to see if there is even a return
+//    if (carReservation.size() == 0) {
+//      return null;
+//    }
+//    // return the first (only) car reservation (type CarReservation)
+//    return carReservation.get(0);
+//  }
 
   // to find all reservations
   public Iterable<CarReservation> getResInfo() {

@@ -25,8 +25,8 @@ public class CarReservationController {
   
   @PostMapping("")
   public String searchReservationsEmail(@RequestParam("email") String email, Model model) {
-	  Iterable<CarReservation> reservations = carReservationRepository.findAll();
-	  //Iterable<CarReservation> reservations = carReservationRepository.findAllCarReservationsUsingEmail(email);
+	  //Iterable<CarReservation> reservations = carReservationRepository.findAll();
+	  Iterable<CarReservation> reservations = carReservationRepository.findByEmail(email);
 	  model.addAttribute("reservations", reservations);
 	  return "user_reservation";
   }
