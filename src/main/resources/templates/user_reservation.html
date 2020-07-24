@@ -1,12 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=50%">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <title>User Reservations</title>
 </head>
 <body>
- <p>User Reservations</p>
- <td>Email:</td>
- <td th:text="${email}"></td>
+<div class="container">
+  <br>
+  <h2>Team 5 Rent-A-Car</h2>
+<h2>User Reservations</h2>
+  <div class="border border-danger p-4 w-50">
+    <a href="/reservation/new" class="btn btn-danger"> New Reservation</a>
+  <br><br>
+  
+  <table>
+		<tr th:each="carReservation: ${reservations}">
+<table>
+  <tbody>
+    <tr>
+      <td>Confirmation Number:</td>
+      <td th:text="${carReservation.customerID}"></td>
+    </tr>
+    <tr>
+      <td>Car ID:</td>
+      <td th:text="${carReservation.carID}"></td>
+    </tr>
+    <tr>
+      <td>First Name:</td>
+      <td th:text="${carReservation.fName}"></td>
+    </tr>
+    <tr>
+      <td>Last Name:</td>
+      <td th:text="${carReservation.lName}"></td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td th:text="${carReservation.email}"></td>
+    </tr>
+    <tr>
+      <td>Pick-Up Location:</td>
+      <td th:text="${carReservation.pickupLocation}"></td>
+    </tr>
+    <tr>
+      <td>Pick-Up Date:</td>
+      <td th:text="${carReservation.pickupDate}"></td>
+    </tr>
+    <tr>
+      <td>Drop-Off Location:</td>
+      <td th:text="${carReservation.returnLocation}"></td>
+    </tr>
+    <tr>
+      <td>Drop-Off Date:</td>
+      <td th:text="${carReservation.returnDate}"></td>
+    </tr>
+    <tr>
+      <td>Car Type:</td>
+      <td th:text="${carReservation.type}"></td>
+    </tr>
+  </tbody>
+</table>
+  <br>
+		</tr>
+	</table>
+
+  </div>
+</div>
 </body>
 </html>
