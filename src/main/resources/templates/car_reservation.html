@@ -44,14 +44,16 @@
       <div class="invalid-feedback">Please provide a valid email.</div>
   </div>
 
-  <div class="form-group">
-    <label for="pickupLocation">Pick-Up Location: </label>
-    <input type="text" id="pickupLocation" th:field="*{pickupLocation}" class="form-control"
-           placeholder="City"required>
-    <span th:if="${#fields.hasErrors('pickupLocation')}" th:errors="*{pickupLocation}"> </span>
-    <div class="valid-feedback"></div>
-    <div class="invalid-feedback">Please provide your preferred pick-up location.</div>
-  </div>
+  <label for="pickupLocation">Pick-Up Location:</label>
+  <select id="pickupLocation" th:field="*{pickupLocation}" class="form-control" required>
+    <option value="">Please select a Pick-Up city</option>
+    <option value="Honolulu">Honolulu</option>
+    <option value="Monterey">Monterey</option>
+    <option value="San Diego">San Diego</option>
+  </select>
+  <span th:if="${#fields.hasErrors('pickupLocation')}" th:errors="*{pickupLocation}"> </span>
+  <div class="valid-feedback"></div>
+  <div class="invalid-feedback">Please select a Pick-Up city from the list.</div><br>
 
   <div class="form-group">
     <label for="pickupDate">Pick-Up Date: </label>
@@ -61,14 +63,16 @@
     <div class="invalid-feedback">Please provide your preferred drop-off date.</div>
   </div>
 
-  <div class="form-group">
-    <label for="returnLocation">Drop-Off Location: </label>
-    <input type="text" id="returnLocation" th:field="*{returnLocation}" class="form-control"
-           placeholder="City" required>
-    <span th:if="${#fields.hasErrors('returnLocation')}" th:errors="*{returnLocation}"> </span>
-    <div class="valid-feedback"></div>
-    <div class="invalid-feedback">Please provide your preferred drop-off location.</div>
-  </div>
+  <label for="returnLocation">Drop-Off Location:</label>
+  <select id="returnLocation" th:field="*{returnLocation}" class="form-control" required>
+    <option value="">Please select a Drop-Off city</option>
+    <option value="Honolulu">Honolulu</option>
+    <option value="Monterey">Monterey</option>
+    <option value="San Diego">San Diego</option>
+  </select>
+  <span th:if="${#fields.hasErrors('returnLocation')}" th:errors="*{returnLocation}"> </span>
+  <div class="valid-feedback"></div>
+  <div class="invalid-feedback">Please select a Drop-Off city from the list.</div><br>
 
 
   <div class="form-group">
