@@ -12,18 +12,29 @@ public class CarReservationService {
   @Autowired
   private CarReservationRepository carReservationRepository;
 
-  public CarReservation getResInfo(String cityName) {
+  // to find a reservation by an id
+  // currently written with reservation ID, but may need to change
+  public CarReservation getResInfo(int resID) {
 
-    List<City> city = cityRepository.findByName(cityName);
+    List<CarReservation> carReservation = (List<CarReservation>) carReservationRepository.findByID(resID);
     // check to see if there is even a return
-    if (city.size() == 0) {
+    if (carReservation.size() == 0) {
       return null;
     }
-    City tempCity = city.get(0);
-    Country country = countryRepository.findByCode(tempCity.getCountryCode());
-    TempAndTime weather = weatherService.getTempAndTime(cityName);
+    // return the first (only) car reservation (type CarReservation)
+    return carReservation.get(0);
+  }
 
-    return new CityInfo(tempCity, country.getName(), weather.getFarTemp(), weather.getStringTime());
+  // to find all reservations
+  public Iterable<CarReservation> getResInfo() {
+
+    List<CarReservation> carReservation = (List<CarReservation>) carReservationRepository.findAll();
+    // check to see if there is even a return
+    if (carReservation.size() == 0) {
+      return null;
+    }
+    // return the Iterable of type CarReservation
+    return carReservation;
   }
 
 }
