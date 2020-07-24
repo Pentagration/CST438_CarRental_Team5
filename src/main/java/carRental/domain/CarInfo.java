@@ -1,0 +1,62 @@
+package carRental.domain;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+
+@Entity
+@Table(name="reservation")
+public class CarInfo {
+
+    @Id
+    @GeneratedValue
+    private long carID;
+    @NotEmpty
+    @Column(name = "email")
+    private String type;
+    private int price;
+    private boolean available;
+
+    @ManyToOne
+    @JoinColumn(name = "email")
+    CarReservation carReservation;
+
+    public CarInfo(){}
+
+    public CarInfo(String type, int price, boolean available){
+        super();
+        this.type = type;
+        this.price = price;
+        this.available = available;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    @Override
+    public String toString() {
+        return "CarReservation [carId=" + carID +
+                ", type=" + type +
+                ", price=" + price + "]";
+    }
+}
