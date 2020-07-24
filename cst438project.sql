@@ -49,11 +49,10 @@ DROP TABLE IF EXISTS `cst438carRental`.`customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cst438carRental`.`customer` (
-  `customerID` int(11) NOT NULL auto_increment,
-  `email` varchar(45) DEFAULT NULL,
+  `email` varchar(45) UNIQUE,
   `fName` varchar(45) DEFAULT NULL,
   `lName` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`customerID`)
+  PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -75,7 +74,7 @@ DROP TABLE IF EXISTS `cst438carRental`.`reservation`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cst438carRental`.`reservation` (
   `reservationID` int(11) NOT NULL auto_increment,
-  `customerID` int(11) NOT NULL,
+  `email` varchar(45) DEFAULT NULL,
   `carID` int(11) DEFAULT NULL,
   `pickupDate` date DEFAULT NULL,
   `returnDate` date DEFAULT NULL,

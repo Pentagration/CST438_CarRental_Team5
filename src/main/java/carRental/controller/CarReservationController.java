@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CarReservationController {
   @Autowired
   private CarReservationRepository carReservationRepository;
-  
+  private CarInfoRepository carInfoRepository;
+  private CarCustomerRepository carCustomerRepository;
   
   @GetMapping("")
   public String index(Model model) {
@@ -36,7 +37,11 @@ public class CarReservationController {
   @GetMapping("/reservation/new")
   public String createReservation(Model model){
     CarReservation carReservation = new CarReservation();
+    CarInfo carInfo = new CarInfo();
+    CarCustomer carCustomer = new CarCustomer();
     model.addAttribute("carReservation", carReservation);
+    model.addAttribute("carInfo", carInfo);
+    model.addAttribute("carCustomer", carCustomer);
     return "car_reservation";
   }
 
@@ -45,9 +50,11 @@ public class CarReservationController {
   presents the user the car_confirmation.html page to fill-out
    */
   @PostMapping("/reservation/new")
-  public String processCarReservation(@Valid CarReservation carReservation,
+  public String processCarReservation(@Valid CarReservation carReservation,@Valid CarInfo carInfo, @Valid CarCustomer carCustomer,
       BindingResult result, Model model){
     carReservationRepository.save(carReservation);
+    carInfoRepository.save(carInfo);
+    carCustomerRepository.save(carCustomer);
     return "car_confirmation";
   }
 }
