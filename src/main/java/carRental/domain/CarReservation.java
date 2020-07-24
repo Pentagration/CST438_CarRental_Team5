@@ -18,10 +18,6 @@ public class CarReservation {
   private String returnLocation;
   private String returnDate;
 
-  @ManyToOne
-  @JoinColumn(name = "email")
-  CarCustomer carCustomer;
-
   public CarReservation(){}
 
   public CarReservation(long customerID, String email,

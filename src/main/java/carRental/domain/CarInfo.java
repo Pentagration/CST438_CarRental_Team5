@@ -4,21 +4,16 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="reservation")
+@Table(name="car")
 public class CarInfo {
 
     @Id
     @GeneratedValue
     private long carID;
     @NotEmpty
-    @Column(name = "email")
     private String type;
     private int price;
     private boolean available;
-
-    @ManyToOne
-    @JoinColumn(name = "email")
-    CarReservation carReservation;
 
     public CarInfo(){}
 
