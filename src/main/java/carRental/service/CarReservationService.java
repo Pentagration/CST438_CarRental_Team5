@@ -16,7 +16,7 @@ public class CarReservationService {
   // currently written with reservation ID, but may need to change
   public CarReservation getResInfo(int resID) {
 
-    List<CarReservation> carReservation = (List<CarReservation>) carReservationRepository.findByID(resID);
+    List<CarReservation> carReservation = (List<CarReservation>) carReservationRepository.findByCustomerID(resID);
     // check to see if there is even a return
     if (carReservation.size() == 0) {
       return null;
