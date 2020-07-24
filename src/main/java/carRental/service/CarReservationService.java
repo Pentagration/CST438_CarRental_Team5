@@ -32,12 +32,19 @@ public class CarReservationService {
   }
 
   // to create a new reservation with api
-  public CarReservation getResInfo(long customerID, long carID, String fName,
+  public CarReservation getResInfo(String fName,
       String lName, String email, String pickupLocation, String pickupDate,
       String returnLocation, String returnDate, String type) {
 
-    CarReservation carReservation = new CarReservation(customerID, carID, fName,
-        lName, email, pickupLocation, pickupDate, returnLocation, returnDate, type);
+    CarReservation carReservation = new CarReservation();
+    carReservation.setfName(fName);
+    carReservation.setlName(lName);
+    carReservation.setEmail(email);
+    carReservation.setPickupLocation(pickupLocation);
+    carReservation.setPickupDate(pickupDate);
+    carReservation.setReturnLocation(returnLocation);
+    carReservation.setReturnDate(returnDate);
+    carReservation.setType(type);
 
     carReservationRepository.save(carReservation);
 
