@@ -31,4 +31,17 @@ public class CarReservationService {
     return carReservation;
   }
 
+  // to create a new reservation with api
+  public CarReservation getResInfo(long customerID, long carID, String fName,
+      String lName, String email, String pickupLocation, String pickupDate,
+      String returnLocation, String returnDate, String type) {
+
+    CarReservation carReservation = new CarReservation(customerID, carID, fName,
+        lName, email, pickupLocation, pickupDate, returnLocation, returnDate, type);
+
+    carReservationRepository.save(carReservation);
+
+    return carReservation;
+  }
+
 }

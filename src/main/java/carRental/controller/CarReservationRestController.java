@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,7 +22,7 @@ public class CarReservationRestController {
   @GetMapping("/api/reservations")
   public ResponseEntity<Iterable<CarReservation>> getAllCarReservation() {
     Iterable<CarReservation> carReservation = carReservationService.getResInfo();
-    System.out.println("all reservations");
+
     // look up city info from database.  Might be multiple cities with same name.
     if (carReservation == null) {
       // reservation not found.  Send 404 return code.
@@ -36,7 +37,7 @@ public class CarReservationRestController {
   @GetMapping("/api/reservations/{id}")
   public ResponseEntity<CarReservation> getSingleCarReservation(@PathVariable("id") long custID) {
     CarReservation carReservation = carReservationService.getResInfo(custID);
-    System.out.println("one reservation");
+
     // look up city info from database.  Might be multiple cities with same name.
     if (carReservation == null) {
       // reservation not found.  Send 404 return code.
@@ -48,18 +49,30 @@ public class CarReservationRestController {
   }
 
   // this is a get method for creating a new reservation
-//  @PostMapping("/api/reservations/new")
-//  public ResponseEntity<CarReservation> getNewCarReservation(@PathVariable("city") String cityName) {
-//    CarReservation carReservation = carReservationService.getResInfo(cityName);
-//
-//    // look up city info from database.  Might be multiple cities with same name.
-//    if (carReservation == null) {
-//      // reservation not found.  Send 404 return code.
-//      return new ResponseEntity<CarReservation>( HttpStatus.NOT_FOUND);
-//    } else {
-//      // return 200 status code (OK) and city information in JSON format
-//      return new ResponseEntity<CarReservation>(carReservation, HttpStatus.OK);
-//    }
-//  }
+  @PostMapping("/api/reservations/new/{customerID}/{carID}/{fName}/{lName}/{email}/"
+      + "{pickupLocation}/{pickupDate}/{returnLocation}/{returnDate}/{type}")
+  public ResponseEntity<CarReservation> getNewCarReservation(
+      @RequestParam("customerID") long customerID,
+      @RequestParam("carID") long carID,
+      @RequestParam("fName") String fName,
+      @RequestParam("lName") String lName,
+      @RequestParam("email") String email,
+      @RequestParam("pickupLocation") String pickupLocation,
+      @RequestParam("pickupDate") String pickupDate,
+      @RequestParam("returnLocation") String returnLocation,
+      @RequestParam("returnDate") String returnDate,
+      @RequestParam("type") String type) {
+    CarReservation carReservation = carReservationService.getResInfo(customerID, carID, fName,
+        lName, email, pickupLocation, pickupDate, returnLocation, returnDate, type);
+
+    // look up city info from database.  Might be multiple cities with same name.
+    if (carReservation == null) {
+      // reservation not found.  Send 404 return code.
+      return new ResponseEntity<CarReservation>( HttpStatus.NOT_FOUND);
+    } else {
+      // return 200 status code (OK) and city information in JSON format
+      return new ResponseEntity<CarReservation>(carReservation, HttpStatus.OK);
+    }
+  }
 
 }
