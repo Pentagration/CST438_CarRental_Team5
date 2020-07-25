@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CarReservationController {
   @Autowired
   private CarReservationRepository carReservationRepository;
+  @Autowired
   private CarInfoRepository carInfoRepository;
+  @Autowired
   private CarCustomerRepository carCustomerRepository;
   
   @GetMapping("")
@@ -53,8 +55,8 @@ public class CarReservationController {
   public String processCarReservation(@Valid CarReservation carReservation,@Valid CarInfo carInfo, @Valid CarCustomer carCustomer,
       BindingResult result, Model model){
     carReservationRepository.save(carReservation);
-    carInfoRepository.save(carInfo);
     carCustomerRepository.save(carCustomer);
+    carInfoRepository.save(carInfo);
     return "car_confirmation";
   }
 }

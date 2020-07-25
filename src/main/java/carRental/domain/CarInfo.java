@@ -48,6 +48,14 @@ public class CarInfo {
         this.available = available;
     }
 
+    public long getCarID() {
+        return carID;
+    }
+
+    public void setCarID(long carID) {
+        this.carID = carID;
+    }
+
     @Override
     public String toString() {
         return "CarReservation [carId=" + carID +
