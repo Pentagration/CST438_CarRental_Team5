@@ -19,23 +19,23 @@
   <tbody>
     <tr>
       <td>Confirmation Number:</td>
-      <td th:text="${carReservation.customerID}"></td>
+      <td th:text="${carReservation.email}"></td>
     </tr>
     <tr>
       <td>Car ID:</td>
-      <td th:text="${carReservation.carID}"></td>
+      <td th:text="${carInfo.carID}"></td>
     </tr>
     <tr>
       <td>First Name:</td>
-      <td th:text="${carReservation.fName}"></td>
+      <td th:text="${carCustomer.fName}"></td>
     </tr>
     <tr>
       <td>Last Name:</td>
-      <td th:text="${carReservation.lName}"></td>
+      <td th:text="${carCustomer.lName}"></td>
     </tr>
     <tr>
       <td>Email:</td>
-      <td th:text="${carReservation.email}"></td>
+      <td th:text="${carCustomer.email}"></td>
     </tr>
     <tr>
       <td>Pick-Up Location:</td>
@@ -55,7 +55,7 @@
     </tr>
     <tr>
       <td>Car Type:</td>
-      <td th:text="${carReservation.type}"></td>
+      <td th:text="${carInfo.type}"></td>
     </tr>
   </tbody>
 </table>
