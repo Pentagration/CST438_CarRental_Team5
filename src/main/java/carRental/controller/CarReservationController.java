@@ -61,15 +61,22 @@ public class CarReservationController {
 
   /*
   localhost:8080/reservation/cancel
+  presents the user the car_reservation.html page to fill-out
+   */
+  @GetMapping("/reservation/cancel")
+  public String cancelReservation(Model model){
+    return "car_cancel";
+  }
+
+  /*
+  localhost:8080/reservation/cancel
   presents the user the car_confirmation.html page to fill-out
    */
-//  @DeleteMapping("/reservation/{id}")
-//  public String deleteCarReservation(@PathVariable long customerID,
-//      BindingResult result, Model model){
-//    carReservationRepository.deleteByCustomerID(customerID);
-//    if (result.hasErrors()) {
-//      return "car_reservation";
-//    }
-//    return "car_cancelled_confirmation";
-//  }
+  @PostMapping("/reservation/cancel")
+  public String deleteCarReservation(@RequestParam("customerID") long customerID){
+    CarReservation cancelled = carReservationRepository.findByCustomerID(customerID);
+    long temp = cancelled.getCustomerID();
+    carReservationRepository.deleteByCustomerID(temp);
+    return "car_cancelled_confirmation";
+  }
 }

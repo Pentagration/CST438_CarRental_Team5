@@ -39,6 +39,7 @@ public class CarReservationService {
     return carReservation;
   }
 
+  // to delete a car reservation
   public CarReservation cancelRes(long resID) {
 
     CarReservation cancelled = carReservationRepository.findByCustomerID(resID);
