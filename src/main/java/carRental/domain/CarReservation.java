@@ -8,6 +8,8 @@ import javax.validation.constraints.NotEmpty;
 public class CarReservation {
 
   @Id
+  @GeneratedValue
+  private long reservationID;
   private String email;
   private String pickupLocation;
   private String pickupDate;
@@ -16,16 +18,25 @@ public class CarReservation {
   private long carID;
   public CarReservation(){}
 
-  public CarReservation(String email,
+  public CarReservation(long reservationID, String email,
       String pickupLocation, String pickupDate,
       String returnLocation, String returnDate, long carID){
     super();
+    this.reservationID = reservationID;
     this.email = email;
     this.pickupLocation = pickupLocation;
     this.pickupDate = pickupDate;
     this.returnLocation = returnLocation;
     this.returnDate = returnDate;
     this.carID = carID;
+  }
+
+  public long getReservationID() {
+    return reservationID;
+  }
+
+  public void setReservationID(long reservationID) {
+    this.reservationID = reservationID;
   }
 
   public String getEmail() {
@@ -78,7 +89,7 @@ public class CarReservation {
 
   @Override
   public String toString() {
-    return "CarReservation [email=" + email +
+    return "CarReservation [reservationID=" + reservationID + ",email=" + email +
         ", pickupLocation=" + pickupLocation + ", pickupDate=" + pickupDate +
         ", returnLocation=" + returnLocation + ", returnDate=" + returnDate +
          "]";

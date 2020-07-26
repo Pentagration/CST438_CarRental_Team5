@@ -49,7 +49,7 @@ DROP TABLE IF EXISTS `cst438carRental`.`customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cst438carRental`.`customer` (
-  `email` varchar(45) UNIQUE,
+  `email` varchar(45) ,
   `f_Name` varchar(45) DEFAULT NULL,
   `l_Name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`email`)
