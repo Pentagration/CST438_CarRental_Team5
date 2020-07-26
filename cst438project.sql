@@ -50,8 +50,8 @@ DROP TABLE IF EXISTS `cst438carRental`.`customer`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cst438carRental`.`customer` (
   `email` varchar(45) UNIQUE,
-  `fName` varchar(45) DEFAULT NULL,
-  `lName` varchar(45) DEFAULT NULL,
+  `f_Name` varchar(45) DEFAULT NULL,
+  `l_Name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -76,10 +76,10 @@ CREATE TABLE `cst438carRental`.`reservation` (
   `reservationID` int(11) NOT NULL auto_increment,
   `email` varchar(45) DEFAULT NULL,
   `carID` int(11) DEFAULT NULL,
-  `pickupDate` date DEFAULT NULL,
-  `returnDate` date DEFAULT NULL,
-  `pickupLocation` varchar(45) DEFAULT NULL,
-  `returnLocation` varchar(45) DEFAULT NULL,
+  `pickup_Date` date DEFAULT NULL,
+  `return_Date` date DEFAULT NULL,
+  `pickup_Location` varchar(45) DEFAULT NULL,
+  `return_Location` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`reservationID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

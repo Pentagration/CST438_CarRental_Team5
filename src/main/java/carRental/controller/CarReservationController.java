@@ -54,9 +54,18 @@ public class CarReservationController {
   @PostMapping("/reservation/new")
   public String processCarReservation(@Valid CarReservation carReservation,@Valid CarInfo carInfo, @Valid CarCustomer carCustomer,
       BindingResult result, Model model){
+    if(carInfo.getType().equals("SUV"))
+      carInfo.setPrice(150);
+    else if(carInfo.getType().equals("Fullsize"))
+      carInfo.setPrice(125);
+    else if(carInfo.getType().equals("Economy"))
+      carInfo.setPrice(110);
+    else if(carInfo.getType().equals("Compact"))
+      carInfo.setPrice(5);
+    carInfoRepository.save(carInfo);
+    carReservation.setCarID(carInfo.getCarID());
     carReservationRepository.save(carReservation);
     carCustomerRepository.save(carCustomer);
-    carInfoRepository.save(carInfo);
     return "car_confirmation";
   }
 }

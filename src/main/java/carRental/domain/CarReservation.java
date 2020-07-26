@@ -13,18 +13,19 @@ public class CarReservation {
   private String pickupDate;
   private String returnLocation;
   private String returnDate;
-
+  private long carID;
   public CarReservation(){}
 
   public CarReservation(String email,
       String pickupLocation, String pickupDate,
-      String returnLocation, String returnDate){
+      String returnLocation, String returnDate, long carID){
     super();
     this.email = email;
     this.pickupLocation = pickupLocation;
     this.pickupDate = pickupDate;
     this.returnLocation = returnLocation;
     this.returnDate = returnDate;
+    this.carID = carID;
   }
 
   public String getEmail() {
@@ -65,6 +66,14 @@ public class CarReservation {
 
   public void setReturnDate(String returnDate) {
     this.returnDate = returnDate;
+  }
+
+  public long getCarID() {
+    return carID;
+  }
+
+  public void setCarID(long carID) {
+    this.carID = carID;
   }
 
   @Override
