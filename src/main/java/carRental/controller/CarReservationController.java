@@ -25,11 +25,13 @@ public class CarReservationController {
 	  model.addAttribute("email", email);
 	  return "index";
   }
-  
+
   @PostMapping("")
   public String searchReservationsEmail(@RequestParam("email") String email, Model model) {
-	  // function(email);
-	  return "user_reservations";
+    //Iterable<CarReservation> reservations = carReservationRepository.findAll();
+    Iterable<CarReservation> reservations = carReservationRepository.findByEmail(email);
+    model.addAttribute("reservations", reservations);
+    return "user_reservation";
   }
 
     /*
@@ -66,6 +68,30 @@ public class CarReservationController {
     carReservation.setCarID(carInfo.getCarID());
     carReservationRepository.save(carReservation);
     carCustomerRepository.save(carCustomer);
+    if (result.hasErrors()) {
+      return "car_reservation";
+    }
     return "car_confirmation";
+  }
+
+  /*
+localhost:8080/reservation/cancel
+presents the user the car_reservation.html page to fill-out
+ */
+  @GetMapping("/reservation/cancel")
+  public String cancelReservation(Model model){
+    return "car_cancel";
+  }
+
+  /*
+  localhost:8080/reservation/cancel
+  presents the user the car_confirmation.html page to fill-out
+   */
+  @PostMapping("/reservation/cancel")
+  public String deleteCarReservation(@RequestParam("customerID") long customerID){
+    CarReservation cancelled = carReservationRepository.findByReservationID(customerID);
+    long temp = cancelled.getReservationID();
+    carReservationRepository.deleteByReservationID(temp);
+    return "car_cancelled_confirmation";
   }
 }

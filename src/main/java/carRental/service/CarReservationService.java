@@ -12,18 +12,40 @@ public class CarReservationService {
   @Autowired
   private CarReservationRepository carReservationRepository;
 
-  public CarReservation getResInfo(String cityName) {
+  // to find a reservation by an id
+  // currently written with reservation ID, but may need to change
+  public CarReservation getResInfo(long resID) {
 
-    List<City> city = cityRepository.findByName(cityName);
-    // check to see if there is even a return
-    if (city.size() == 0) {
-      return null;
-    }
-    City tempCity = city.get(0);
-    Country country = countryRepository.findByCode(tempCity.getCountryCode());
-    TempAndTime weather = weatherService.getTempAndTime(cityName);
+    CarReservation carReservation = carReservationRepository.findByCustomerID(resID);
 
-    return new CityInfo(tempCity, country.getName(), weather.getFarTemp(), weather.getStringTime());
+    // return the first (only) car reservation (type CarReservation)
+    return carReservation;
   }
 
+  // to find all reservations
+  public Iterable<CarReservation> getResInfo() {
+
+    Iterable<CarReservation> carReservation = (Iterable<CarReservation>) carReservationRepository.findAll();
+
+    // return the Iterable of type CarReservation
+    return carReservation;
+  }
+
+  // to create a new reservation with api
+  public CarReservation newRes(CarReservation carReservation) {
+
+    carReservationRepository.save(carReservation);
+
+    return carReservation;
+  }
+
+  // to delete a car reservation
+  public CarReservation cancelRes(long resID) {
+
+    CarReservation cancelled = carReservationRepository.findByCustomerID(resID);
+
+    carReservationRepository.delete(cancelled);
+
+    return cancelled;
+  }
 }
