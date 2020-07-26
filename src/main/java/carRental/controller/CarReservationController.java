@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,12 +25,21 @@ public class CarReservationController {
 	  return "index";
   }
   
+  
   @PostMapping("")
   public String searchReservationsEmail(@RequestParam("email") String email, Model model) {
-	  //Iterable<CarReservation> reservations = carReservationRepository.findAll();
 	  Iterable<CarReservation> reservations = carReservationRepository.findByEmail(email);
 	  model.addAttribute("reservations", reservations);
 	  return "user_reservation";
+  }
+  
+  @DeleteMapping("")
+  public String deleteResIndex(@PathVariable long customerID, BindingResult result, Model model){
+	  carReservationRepository.deleteByCustomerID(customerID);
+	  if (result.hasErrors()) {
+		  return "car_reservation";
+	  }
+	  return "car_cancled_confirmation";
   }
 
     /*
@@ -50,6 +61,21 @@ public class CarReservationController {
   public String processCarReservation(@Valid CarReservation carReservation,
       BindingResult result, Model model){
     carReservationRepository.save(carReservation);
+    if (result.hasErrors()) {
+      return "car_reservation";
+    }
     return "car_confirmation";
+  }
+
+  /*
+  localhost:8080/reservation/cancel
+  presents the user the car_confirmation.html page to fill-out
+   */  
+  @PostMapping("/reservation/cancel")
+  public String deleteCarReservation(@RequestParam("customerID") long customerID){
+    //CarReservation cancelled = carReservationRepository.findByCustomerID(customerID);
+    //carReservationRepository.deleteByCustomerID(cancelled.getCustomerID());
+    carReservationRepository.deleteByCustomerID(customerID);
+    return "car_cancelled_confirmation";
   }
 }
