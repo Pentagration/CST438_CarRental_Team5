@@ -13,4 +13,6 @@ public interface CarReservationRepository extends CrudRepository<CarReservation,
   
   @Query(value= "Select * from reservation u WHERE u.email =?1", nativeQuery = true)
   List<CarReservation> findByEmail(String email);
+
+  CarReservation deleteByCustomerID(long customerID);
 }

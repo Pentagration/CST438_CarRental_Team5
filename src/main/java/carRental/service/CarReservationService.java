@@ -39,4 +39,12 @@ public class CarReservationService {
     return carReservation;
   }
 
+  public CarReservation cancelRes(long resID) {
+
+    CarReservation cancelled = carReservationRepository.findByCustomerID(resID);
+
+    carReservationRepository.delete(cancelled);
+
+    return cancelled;
+  }
 }
