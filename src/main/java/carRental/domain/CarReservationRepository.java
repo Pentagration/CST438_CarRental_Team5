@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 public interface CarReservationRepository extends CrudRepository<CarReservation, Long> {
-
     CarReservation findByReservationID(long resID);
 
     Iterable<CarReservation> findAll();

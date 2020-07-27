@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -25,6 +27,7 @@ public class CarReservationController {
 	  model.addAttribute("email", email);
 	  return "index";
   }
+
 
   @PostMapping("")
   public String searchReservationsEmail(@RequestParam("email") String email, Model model) {
@@ -89,9 +92,11 @@ presents the user the car_reservation.html page to fill-out
    */
   @PostMapping("/reservation/cancel")
   public String deleteCarReservation(@RequestParam("customerID") long customerID){
+
     CarReservation cancelled = carReservationRepository.findByReservationID(customerID);
     long temp = cancelled.getReservationID();
     carReservationRepository.deleteByReservationID(temp);
+
     return "car_cancelled_confirmation";
   }
 }
