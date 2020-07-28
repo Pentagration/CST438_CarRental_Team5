@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CarReservationController {
   @Autowired
   private CarReservationRepository carReservationRepository;
-  
+  @Autowired
+  private CarInfoRepository carInfoRepository;
+  @Autowired
+  private CarCustomerRepository carCustomerRepository;
   
   @GetMapping("")
   public String index(Model model) {
@@ -24,14 +27,14 @@ public class CarReservationController {
 	  model.addAttribute("email", email);
 	  return "index";
   }
-  
-  
+
+
   @PostMapping("")
   public String searchReservationsEmail(@RequestParam("email") String email, Model model) {
-	  //Iterable<CarReservation> reservations = carReservationRepository.findAll();
-	  Iterable<CarReservation> reservations = carReservationRepository.findByEmail(email);
-	  model.addAttribute("reservations", reservations);
-	  return "user_reservation";
+    //Iterable<CarReservation> reservations = carReservationRepository.findAll();
+    Iterable<CarReservation> reservations = carReservationRepository.findByEmail(email);
+    model.addAttribute("reservations", reservations);
+    return "user_reservation";
   }
 
     /*
@@ -41,7 +44,11 @@ public class CarReservationController {
   @GetMapping("/reservation/new")
   public String createReservation(Model model){
     CarReservation carReservation = new CarReservation();
+    CarInfo carInfo = new CarInfo();
+    CarCustomer carCustomer = new CarCustomer();
     model.addAttribute("carReservation", carReservation);
+    model.addAttribute("carInfo", carInfo);
+    model.addAttribute("carCustomer", carCustomer);
     return "car_reservation";
   }
 
@@ -50,9 +57,20 @@ public class CarReservationController {
   presents the user the car_confirmation.html page to fill-out
    */
   @PostMapping("/reservation/new")
-  public String processCarReservation(@Valid CarReservation carReservation,
+  public String processCarReservation(@Valid CarReservation carReservation,@Valid CarInfo carInfo, @Valid CarCustomer carCustomer,
       BindingResult result, Model model){
+    if(carInfo.getType().equals("SUV"))
+      carInfo.setPrice(150);
+    else if(carInfo.getType().equals("Fullsize"))
+      carInfo.setPrice(125);
+    else if(carInfo.getType().equals("Economy"))
+      carInfo.setPrice(110);
+    else if(carInfo.getType().equals("Compact"))
+      carInfo.setPrice(5);
+    carInfoRepository.save(carInfo);
+    carReservation.setCarID(carInfo.getCarID());
     carReservationRepository.save(carReservation);
+    carCustomerRepository.save(carCustomer);
     if (result.hasErrors()) {
       return "car_reservation";
     }
@@ -60,9 +78,9 @@ public class CarReservationController {
   }
 
   /*
-  localhost:8080/reservation/cancel
-  presents the user the car_reservation.html page to fill-out
-   */
+localhost:8080/reservation/cancel
+presents the user the car_reservation.html page to fill-out
+ */
   @GetMapping("/reservation/cancel")
   public String cancelReservation(Model model){
     return "car_cancel";
@@ -74,9 +92,11 @@ public class CarReservationController {
    */
   @PostMapping("/reservation/cancel")
   public String deleteCarReservation(@RequestParam("customerID") long customerID){
-    CarReservation cancelled = carReservationRepository.findByCustomerID(customerID);
-    long temp = cancelled.getCustomerID();
-    carReservationRepository.deleteByCustomerID(temp);
+
+    CarReservation cancelled = carReservationRepository.findByReservationID(customerID);
+    long temp = cancelled.getReservationID();
+    carReservationRepository.deleteByReservationID(temp);
+
     return "car_cancelled_confirmation";
   }
 }

@@ -14,84 +14,84 @@
   <br>
   <h2>Team 5 Rent-A-Car</h2>
   <div class="border border-danger p-4 w-50">
-    <form action="#" th:action="@{/reservation/new}" th:object="${carReservation}"
+    <form action="#" th:action="@{/reservation/new}"
           method="post" class="needs-validation" novalidate>
 
   <div class="form-group">
     <label for="fName">First Name: </label>
-    <input type="text" id="fName" th:field="*{fName}" class="form-control"
+    <input type="text" id="fName" th:field="${carCustomer.fName}" class="form-control"
            placeholder="Enter First Name" required>
-    <span th:if="${#fields.hasErrors('fName')}" th:errors="*{fName}"> </span>
+    <span th:if="${#fields.hasErrors('carCustomer.fName')}" th:errors="${carCustomer.fName}"> </span>
     <div class="valid-feedback"></div>
       <div class="invalid-feedback">Please fill out your first name.</div>
   </div>
 
   <div class="form-group">
     <label for="lName">Last Name: </label>
-    <input type="text" id="lName" th:field="*{lName}" class="form-control"
+    <input type="text" id="lName" th:field="${carCustomer.lName}" class="form-control"
            placeholder="Enter Last Name" required>
-    <span th:if="${#fields.hasErrors('lName')}" th:errors="*{lName}"> </span>
+    <span th:if="${#fields.hasErrors('carCustomer.lName')}" th:errors="${carCustomer.lName}"> </span>
     <div class="valid-feedback"></div>
       <div class="invalid-feedback">Please fill out your last name.</div>
   </div>
 
   <div class="form-group">
     <label for="email">Email: </label>
-    <input type="email" id="email" th:field="*{email}" class="form-control"
+    <input type="email" id="email" th:field="${carCustomer.email}" class="form-control"
            placeholder="Enter email" required>
-    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"> </span>
+    <span th:if="${#fields.hasErrors('carCustomer.email')}" th:errors="${carCustomer.email}"> </span>
     <div class="valid-feedback"></div>
       <div class="invalid-feedback">Please provide a valid email.</div>
   </div>
 
   <label for="pickupLocation">Pick-Up Location:</label>
-  <select id="pickupLocation" th:field="*{pickupLocation}" class="form-control" required>
+  <select id="pickupLocation" th:field="${carReservation.pickupLocation}" class="form-control" required>
     <option value="">Please select a Pick-Up city</option>
     <option value="Honolulu">Honolulu</option>
     <option value="Monterey">Monterey</option>
     <option value="San Diego">San Diego</option>
   </select>
-  <span th:if="${#fields.hasErrors('pickupLocation')}" th:errors="*{pickupLocation}"> </span>
+  <span th:if="${#fields.hasErrors('carReservation.pickupLocation')}" th:errors="*{carReservation.pickupLocation}"> </span>
   <div class="valid-feedback"></div>
   <div class="invalid-feedback">Please select a Pick-Up city from the list.</div><br>
 
   <div class="form-group">
     <label for="pickupDate">Pick-Up Date: </label>
-    <input type="date" id="pickupDate" th:field="*{pickupDate}" class="form-control" required>
-    <span th:if="${#fields.hasErrors('pickupDate')}" th:errors="*{pickupDate}"> </span>
+    <input type="date" id="pickupDate" th:field="${carReservation.pickupDate}" class="form-control" required>
+    <span th:if="${#fields.hasErrors('carReservation.pickupDate')}" th:errors="${carReservation.pickupDate}"> </span>
     <div class="valid-feedback"></div>
     <div class="invalid-feedback">Please provide your preferred drop-off date.</div>
   </div>
 
   <label for="returnLocation">Drop-Off Location:</label>
-  <select id="returnLocation" th:field="*{returnLocation}" class="form-control" required>
+  <select id="returnLocation" th:field="${carReservation.returnLocation}" class="form-control" required>
     <option value="">Please select a Drop-Off city</option>
     <option value="Honolulu">Honolulu</option>
     <option value="Monterey">Monterey</option>
     <option value="San Diego">San Diego</option>
   </select>
-  <span th:if="${#fields.hasErrors('returnLocation')}" th:errors="*{returnLocation}"> </span>
+  <span th:if="${#fields.hasErrors('carReservation.returnLocation')}" th:errors="${carReservation.returnLocation}"> </span>
   <div class="valid-feedback"></div>
   <div class="invalid-feedback">Please select a Drop-Off city from the list.</div><br>
 
 
   <div class="form-group">
     <label for="returnDate">Drop-Off Date: </label>
-    <input type="date" id="returnDate" th:field="*{returnDate}" class="form-control" required>
-    <span th:if="${#fields.hasErrors('returnDate')}" th:errors="*{returnDate}"> </span>
+    <input type="date" id="returnDate" th:field="${carReservation.returnDate}" class="form-control" required>
+    <span th:if="${#fields.hasErrors('carReservation.returnDate')}" th:errors="${carReservation.returnDate}"> </span>
     <div class="valid-feedback"></div>
       <div class="invalid-feedback">Please provide your preferred drop-off date.</div>
   </div>
 
   <label for="type">Choose a Car Type:</label>
-    <select id="type" th:field="*{type}" class="form-control" required>
+    <select id="type" th:field="${carInfo.type}" class="form-control" required>
       <option value="">Please select a car type</option>
       <option value="SUV">SUV (6-8 people) $150.00/day</option>
       <option value="Fullsize">Full-size (4-5 people) $125.00/day</option>
       <option value="Economy">Economy (4 people) $110.00/day</option>
       <option value="Compact">Compact (2 people) $5.00/day</option>
     </select>
-      <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}"> </span>
+      <span th:if="${#fields.hasErrors('carInfo.type')}" th:errors="${carInfo.type}"> </span>
     <div class="valid-feedback"></div>
     <div class="invalid-feedback">Please select your preferred car type from the list.</div><br>
 
