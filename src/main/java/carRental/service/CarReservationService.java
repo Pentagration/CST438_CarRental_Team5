@@ -16,7 +16,7 @@ public class CarReservationService {
   // currently written with reservation ID, but may need to change
   public CarReservation getResInfo(long resID) {
 
-    CarReservation carReservation = carReservationRepository.findByCustomerID(resID);
+    CarReservation carReservation = carReservationRepository.findByReservationID(resID);
 
     // return the first (only) car reservation (type CarReservation)
     return carReservation;
@@ -42,7 +42,7 @@ public class CarReservationService {
   // to delete a car reservation
   public CarReservation cancelRes(long resID) {
 
-    CarReservation cancelled = carReservationRepository.findByCustomerID(resID);
+    CarReservation cancelled = carReservationRepository.findByReservationID(resID);
 
     carReservationRepository.delete(cancelled);
 
