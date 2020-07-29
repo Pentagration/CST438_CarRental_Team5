@@ -35,11 +35,11 @@ public class CarReservationRestController {
     }
   }
 
-  // this is a get method for finding a single reservation
-  @GetMapping("/api/reservations/{id}")
-  public ResponseEntity<CarReservation> getSingleCarReservation(@PathVariable("id") long custID) {
+  // this is a get method for finding a single reservation by reservation id
+  @GetMapping(value = "/api/reservation/id", consumes = "application/json", produces = "application/json")
+  public ResponseEntity<CarReservation> getSingleCarReservation(@RequestBody long resID) {
 
-    CarReservation carReservation = carReservationService.getResInfo(custID);
+    CarReservation carReservation = carReservationService.getResInfo(resID);
 
     // look up city info from database.  Might be multiple cities with same name.
     if (carReservation == null) {
@@ -51,8 +51,24 @@ public class CarReservationRestController {
     }
   }
 
+  // this is a get method for finding all reservations by email
+  @GetMapping(value = "/api/reservation/email", consumes = "application/json", produces = "application/json")
+  public ResponseEntity<Iterable<CarReservation>> getEmailCarReservation(@RequestBody String email) {
+
+    Iterable<CarReservation> carReservation = carReservationService.getResInfo(email);
+
+    // look up city info from database.  Might be multiple cities with same name.
+    if (carReservation == null) {
+      // reservation not found.  Send 404 return code.
+      return new ResponseEntity<Iterable<CarReservation>>( HttpStatus.NOT_FOUND);
+    } else {
+      // return 200 status code (OK) and information in JSON format
+      return new ResponseEntity<Iterable<CarReservation>>(carReservation, HttpStatus.OK);
+    }
+  }
+
   // this is a get method for creating a new reservation
-  @PostMapping(value = "/api/reservations/new/", consumes = "application/json", produces = "application/json")
+  @PostMapping(value = "/api/reservation/new", consumes = "application/json", produces = "application/json")
   public ResponseEntity<CarReservation> createNewCarReservation(@RequestBody CarReservation carReservation) {
 
     carReservation = carReservationService.newRes(carReservation);
@@ -67,10 +83,10 @@ public class CarReservationRestController {
   }
 
   // this is a delete method for deleting a reservation
-  @DeleteMapping(value = "/api/reservations/cancel/", consumes = "application/json")
-  public ResponseEntity<Void> cancelReservation(@RequestBody long customerID) {
+  @DeleteMapping(value = "/api/reservation/cancel", consumes = "application/json")
+  public ResponseEntity<Void> cancelReservation(@RequestBody long resID) {
 
-    CarReservation cancelledReservation = carReservationService.cancelRes(customerID);
+    CarReservation cancelledReservation = carReservationService.cancelRes(resID);
 
     if (cancelledReservation == null) {
       // reservation not found.  Send 404 return code.
