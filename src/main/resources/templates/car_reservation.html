@@ -7,6 +7,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
   <title>Car Reservation</title>
 </head>
 <body>
@@ -57,7 +59,7 @@
 
   <div class="form-group">
     <label for="pickupDate">Pick-Up Date: </label>
-    <input type="date" id="pickupDate" th:field="${carReservation.pickupDate}" class="form-control" required>
+    <input type="text" id="pickupDate" th:field="${carReservation.pickupDate}" class="form-control datepicker" autocomplete="on" required>
     <span th:if="${#fields.hasErrors('carReservation.pickupDate')}" th:errors="${carReservation.pickupDate}"> </span>
     <div class="valid-feedback"></div>
     <div class="invalid-feedback">Please provide your preferred drop-off date.</div>
@@ -77,7 +79,7 @@
 
   <div class="form-group">
     <label for="returnDate">Drop-Off Date: </label>
-    <input type="date" id="returnDate" th:field="${carReservation.returnDate}" class="form-control" required>
+    <input type="text" id="returnDate" th:field="${carReservation.returnDate}" class="form-control datepicker" autocomplete="on" required>
     <span th:if="${#fields.hasErrors('carReservation.returnDate')}" th:errors="${carReservation.returnDate}"> </span>
     <div class="valid-feedback"></div>
       <div class="invalid-feedback">Please provide your preferred drop-off date.</div>
@@ -98,26 +100,33 @@
   <input type="submit" value="Submit" class="btn btn-primary">
   </div>
 
-    <script>
-      // Disable form submissions if there are invalid fields
-      (function() {
-        'use strict';
-        window.addEventListener('load', function() {
-          // Get the forms we want to add validation styles to
-          var forms = document.getElementsByClassName('needs-validation');
-          // Loop over them and prevent submission
-          var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-              if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-              }
-              form.classList.add('was-validated');
-            }, false);
-          });
-        }, false);
-      })();
-    </script>
+  <script>
+    // Disable form submissions if there are invalid fields
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Get the forms we want to add validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+  </script>
+
+  <script type="text/javascript">
+    $('.datepicker').datepicker({
+      startDate: new Date()
+    });
+  </script>
+
 </form>
 </div>
 </body>
