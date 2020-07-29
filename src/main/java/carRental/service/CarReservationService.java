@@ -13,12 +13,19 @@ public class CarReservationService {
   private CarReservationRepository carReservationRepository;
 
   // to find a reservation by an id
-  // currently written with reservation ID, but may need to change
   public CarReservation getResInfo(long resID) {
 
     CarReservation carReservation = carReservationRepository.findByReservationID(resID);
 
     // return the first (only) car reservation (type CarReservation)
+    return carReservation;
+  }
+
+  // to find a reservation by an email
+  public Iterable<CarReservation> getResInfo(String email) {
+
+    Iterable<CarReservation> carReservation = carReservationRepository.findByEmail(email);
+
     return carReservation;
   }
 
