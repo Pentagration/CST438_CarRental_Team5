@@ -2,7 +2,6 @@ package carRental.service;
 
 import carRental.domain.CarReservation;
 import carRental.domain.CarReservationRepository;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
