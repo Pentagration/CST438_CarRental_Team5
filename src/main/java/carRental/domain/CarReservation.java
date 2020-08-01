@@ -2,11 +2,17 @@ package carRental.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 @Table(name="reservation")
 public class CarReservation {
 
+  public static final String pickup = "pickup";
+  public static final String dropoff = "dropoff";
   @Id
   @GeneratedValue
   private long reservationID;
@@ -85,6 +91,19 @@ public class CarReservation {
 
   public void setCarID(long carID) {
     this.carID = carID;
+  }
+
+  public void convertDate(String date, String dateType) throws ParseException {
+    try {
+      //Date date = new SimpleDateFormat("yyyy-MM-dd").parse(pickupDate);
+      Date dt = new SimpleDateFormat("MM/dd/yyy").parse(date);
+      DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+      if (dateType.equals(pickup))
+        this.pickupDate = df.format(dt);
+      else
+        this.returnDate = df.format(dt);
+    }
+    catch(ParseException e) {e.printStackTrace();}
   }
 
   @Override

@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Controller
 public class CarReservationController {
   @Autowired
@@ -58,16 +63,11 @@ public class CarReservationController {
    */
   @PostMapping("/reservation/new")
   public String processCarReservation(@Valid CarReservation carReservation,@Valid CarInfo carInfo, @Valid CarCustomer carCustomer,
-      BindingResult result, Model model){
-    if(carInfo.getType().equals("SUV"))
-      carInfo.setPrice(150);
-    else if(carInfo.getType().equals("Fullsize"))
-      carInfo.setPrice(125);
-    else if(carInfo.getType().equals("Economy"))
-      carInfo.setPrice(110);
-    else if(carInfo.getType().equals("Compact"))
-      carInfo.setPrice(5);
+      BindingResult result, Model model) throws ParseException {
+    carInfo.setPrice(carInfo.getType());
     carInfoRepository.save(carInfo);
+    carReservation.convertDate(carReservation.getPickupDate(), carReservation.pickup);
+    carReservation.convertDate(carReservation.getReturnDate(), carReservation.dropoff);
     carReservation.setCarID(carInfo.getCarID());
     carReservationRepository.save(carReservation);
     carCustomerRepository.save(carCustomer);

@@ -40,6 +40,17 @@ public class CarInfo {
         this.price = price;
     }
 
+    public void setPrice(String car){
+        if(car.equals("SUV"))
+            price = 150;
+        else if(car.equals("Fullsize"))
+            price = 125;
+        else if(car.equals("Economy"))
+            price = 110;
+        else if(car.equals("Compact"))
+            price = 5;
+    }
+
     public boolean isAvailable() {
         return available;
     }
