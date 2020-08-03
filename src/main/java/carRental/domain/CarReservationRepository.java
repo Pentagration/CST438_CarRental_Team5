@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 public interface CarReservationRepository extends CrudRepository<CarReservation, Long> {
     CarReservation findByReservationID(long resID);
 
-    Iterable<CarReservation> findAll();
+    List<CarReservation> findAll();
 
     @Query(value= "Select * from reservation u WHERE u.email =?1", nativeQuery = true)
     List<CarReservation> findByEmail(String email);

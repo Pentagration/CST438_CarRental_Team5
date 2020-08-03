@@ -2,6 +2,7 @@ package carRental.service;
 
 import carRental.domain.CarReservation;
 import carRental.domain.CarReservationRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,17 +22,17 @@ public class CarReservationService {
   }
 
   // to find a reservation by an email
-  public Iterable<CarReservation> getResInfo(String email) {
+  public List<CarReservation> getResInfo(String email) {
 
-    Iterable<CarReservation> carReservation = carReservationRepository.findByEmail(email);
+    List<CarReservation> carReservation = carReservationRepository.findByEmail(email);
 
     return carReservation;
   }
 
   // to find all reservations
-  public Iterable<CarReservation> getResInfo() {
+  public List<CarReservation> getResInfo() {
 
-    Iterable<CarReservation> carReservation = (Iterable<CarReservation>) carReservationRepository.findAll();
+    List<CarReservation> carReservation = (List<CarReservation>) carReservationRepository.findAll();
 
     // return the Iterable of type CarReservation
     return carReservation;

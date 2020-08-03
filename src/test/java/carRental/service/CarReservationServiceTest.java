@@ -7,21 +7,22 @@ import carRental.domain.CarReservation;
 import carRental.domain.CarReservationRepository;
 import carRental.service.CarReservationService;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
- 
+
 @SpringBootTest
 public class CarReservationServiceTest {
 
 	@Autowired
 	private CarReservationService carReservationService;
-	
+
 	@MockBean
 	private CarReservationRepository carReservationRepository;
-	
+
 	@Test
 	public void contextLoads() {
 	}
@@ -50,7 +51,7 @@ public class CarReservationServiceTest {
 		assertThat(testReservation).isEqualTo(carReservation);
 
 	}
-	
+
 	@Test
 	public void  testReservationNotFoundID() {
 
@@ -97,7 +98,7 @@ public class CarReservationServiceTest {
 		// stub for the CarReservationRepository.
 		given(carReservationRepository.findByEmail("test@email.com")).willReturn(carReservation);
 
-		Iterable<CarReservation> testReservation = carReservationService.getResInfo("test@email.com");
+		List<CarReservation> testReservation = carReservationService.getResInfo("test@email.com");
 
 		// Assertions
 		assertThat(testReservation).isEqualTo(carReservation);
@@ -124,62 +125,79 @@ public class CarReservationServiceTest {
 		// stub for the CarReservationRepository.
 		given(carReservationRepository.findByEmail("test@email.com")).willReturn(carReservation);
 
-		Iterable<CarReservation> testReservation = carReservationService.getResInfo("test2@email.com");
-		Iterable<CarReservation> expectedResult = null;
+		List<CarReservation> testReservation = carReservationService.getResInfo("test2@email.com");
+		List<CarReservation> expectedResult = Collections.emptyList();
+
+		// Assertions
+		assertThat(testReservation).isEqualTo(expectedResult);
+	}
+
+	@Test
+	public void  testAllReservations() {
+		// create 3 reservations
+		CarReservation carReservation1 = new CarReservation(
+				1,
+				"test@email.com",
+				"Honolulu",
+				"1/1/2021",
+				"Honolulu",
+				"1/1/2021",
+				1
+		);
+		CarReservation carReservation2 = new CarReservation(
+				2,
+				"test2@email.com",
+				"Monterey",
+				"1/2/2021",
+				"Monterey",
+				"1/2/2021",
+				2
+		);
+		CarReservation carReservation3 = new CarReservation(
+				3,
+				"test3@email.com",
+				"San Diego",
+				"1/3/2021",
+				"San Diego",
+				"1/3/2021",
+				3
+		);
+
+		// Create an empty carReservation list to be used on the given
+		List<CarReservation> carReservation = new ArrayList<CarReservation>();
+		carReservation.add(carReservation1);
+		carReservation.add(carReservation2);
+		carReservation.add(carReservation3);
+
+		// stub for the CarReservationRepository.
+		given(carReservationRepository.findAll()).willReturn(carReservation);
+
+		List<CarReservation> testReservation = carReservationService.getResInfo();
 
 		// Assertions
 		assertThat(testReservation).isEqualTo(carReservation);
 	}
 
 	@Test
-	public void  testCityMultiple() {
-		// create 3 countries to simulate cities with the same name in multiple countries
-		Country country = new Country("TST", "TestCountry");
-		Country country2 = new Country("TST2", "TestCountry2");
-		Country country3 = new Country("TST3", "TestCountry3");
+	public void  testCancelReservation() {
+		// create a new car reservation
+		CarReservation carReservation = new CarReservation(
+				1,
+				"test@email.com",
+				"San Diego",
+				"1/1/2021",
+				"San Diego",
+				"1/2/2021",
+				1
+		);
 
-		// create cities for each country
-		City city = new City(1, "TestCity", "TST", "DistrictTest", 123456);
-		City city2 = new City(1, "TestCity", "TST2", "DistrictTest2", 1234562);
-		City city3 = new City(1, "TestCity", "TST3", "DistrictTest3", 1234563);
+		// stub for the CarReservationRepository.
+		given(carReservationRepository.findByReservationID(1)).willReturn(carReservation);
+		given(carReservationRepository.deleteByReservationID(1)).willReturn(1);
 
-		// Create an empty cities list to be used on the given
-		List<City> cities = new ArrayList<City>();
-		cities.add(city);
-		cities.add(city2);
-		cities.add(city3);
-
-		// create the stub calls and return data for weather service
-		//  when the getTempAndTime method is called with name parameter "TestCity",
-		//  the stub will return the given temp (in degrees Kelvin) and time.
-		given(weatherService.getTempAndTime("TestCity"))
-				.willReturn(new TempAndTime(295.37, 1593890000, -14400));
-
-		// stub for the CityRepository.  When given input parm of "TestCity",
-		// it will return a list of cities populated above by our multiple cities.
-		given(cityRepository.findByName("TestCity")).willReturn(cities);
-
-		// stub for the CountryRepository.  When given input parm of country code,
-		// it will return the country created above.
-		given(countryRepository.findByCode("TST")).willReturn(country);
-		given(countryRepository.findByCode("TST2")).willReturn(country2);
-		given(countryRepository.findByCode("TST3")).willReturn(country3);
-
-		CityInfo cityResult = cityService.getCityInfo("TestCity");
-		CityInfo expectedResult = new CityInfo(1, "TestCity", "TST", "TestCountry", "DistrictTest",
-				123456, 72.0, "15:13");
+		CarReservation testReservation = carReservationService.cancelRes(1);
 
 		// Assertions
-		assertThat(cityResult).isEqualTo(expectedResult);
-	}
-
-	@Test
-	public void  testNewReservation() {
-
-	}
-
-	@Test
-	public void  testCancelReservation() {
-
+		assertThat(testReservation).isEqualTo(carReservation);
 	}
 }
