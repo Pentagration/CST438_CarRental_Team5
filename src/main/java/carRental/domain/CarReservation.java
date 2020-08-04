@@ -16,7 +16,9 @@ public class CarReservation {
   private String returnLocation;
   private String returnDate;
   private long carID;
-  public CarReservation(){}
+  public CarReservation(){
+    super();
+  }
 
   public CarReservation(long reservationID, String email,
       String pickupLocation, String pickupDate,
@@ -29,6 +31,47 @@ public class CarReservation {
     this.returnLocation = returnLocation;
     this.returnDate = returnDate;
     this.carID = carID;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    CarReservation other = (CarReservation) obj;
+    if (pickupDate == null) {
+      if (other.pickupDate != null)
+        return false;
+    } else if (!pickupDate.equals(other.pickupDate))
+      return false;
+    if (email == null) {
+      if (other.email != null)
+        return false;
+    } else if (!email.equals(other.email))
+      return false;
+    if (pickupLocation == null) {
+      if (other.pickupLocation != null)
+        return false;
+    } else if (!pickupLocation.equals(other.pickupLocation))
+      return false;
+    if (reservationID != other.reservationID)
+      return false;
+    if (returnLocation == null) {
+      if (other.returnLocation != null)
+        return false;
+    } else if (!returnLocation.equals(other.returnLocation))
+      return false;
+    if (carID != other.carID)
+      return false;
+    if (returnDate == null) {
+      if (other.returnDate != null)
+        return false;
+    } else if (!returnDate.equals(other.returnDate))
+      return false;
+    return true;
   }
 
   public long getReservationID() {
