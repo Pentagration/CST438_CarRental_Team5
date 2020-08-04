@@ -58,7 +58,7 @@ public class CarReservationRestController {
     List<CarReservation> carReservation = carReservationService.getResInfo(email);
 
     // look up city info from database.  Might be multiple cities with same name.
-    if (carReservation == null) {
+    if (carReservation.size() == 0) {
       // reservation not found.  Send 404 return code.
       return new ResponseEntity<List<CarReservation>>( HttpStatus.NOT_FOUND);
     } else {

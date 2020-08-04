@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 import carRental.domain.CarReservation;
@@ -197,7 +198,7 @@ public class CarReservationRestControllerTest {
 		carReservation.add(carReservation1);
 
 		// stub for the CarReservationService.
-		given(carReservationService.getResInfo("test@email.com")).willReturn(carReservation);
+		given(carReservationService.getResInfo("test@email.com")).willReturn(null);
 
 		//  to pass in for JSON body content
 		String email = "test2@email.com";
@@ -206,8 +207,56 @@ public class CarReservationRestControllerTest {
 		MockHttpServletResponse response = mvc.perform(get("/api/reservation/email").contentType(APPLICATION_JSON_UTF8)
 				.content(email)).andReturn().getResponse();
 
-		String stringResponse = mvc.perform(get("/api/reservation/email").contentType(APPLICATION_JSON_UTF8)
-				.content(email)).andReturn().getResponse().getContentAsString();
+		// verify that result is as expected
+		assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value());
+	}
+
+	@Test
+	public void testAllReservations() throws Exception {
+
+		// create multiple new car reservations
+		CarReservation carReservation1 = new CarReservation(
+				1,
+				"test@email.com",
+				"Honolulu",
+				"1/1/2021",
+				"Honolulu",
+				"1/1/2021",
+				1
+		);
+		CarReservation carReservation2 = new CarReservation(
+				2,
+				"test2@email.com",
+				"Monterey",
+				"1/2/2021",
+				"Monterey",
+				"1/2/2021",
+				2
+		);
+		CarReservation carReservation3 = new CarReservation(
+				3,
+				"test3@email.com",
+				"San Diego",
+				"1/3/2021",
+				"San Diego",
+				"1/3/2021",
+				3
+		);
+
+		List<CarReservation> carReservation = new ArrayList<CarReservation>();
+		carReservation.add(carReservation1);
+		carReservation.add(carReservation2);
+		carReservation.add(carReservation3);
+
+		// stub for the CarReservationService.
+		given(carReservationService.getResInfo()).willReturn(carReservation);
+
+		// perform the test by making simulated HTTP get using URL of "/api/reservation/email"
+		MockHttpServletResponse response = mvc.perform(get("/api/reservations")).andReturn().
+				getResponse();
+
+		String stringResponse = mvc.perform(get("/api/reservations")).andReturn().
+				getResponse().getContentAsString();
 
 		// verify that result is as expected
 		assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
@@ -217,9 +266,72 @@ public class CarReservationRestControllerTest {
 		List<CarReservation> resultList = mapper.readValue
 				(stringResponse, new TypeReference<List<CarReservation>>() {});
 
+		CarReservation expectedResult1 = new CarReservation(
+				1,
+				"test@email.com",
+				"Honolulu",
+				"1/1/2021",
+				"Honolulu",
+				"1/1/2021",
+				1
+		);
+		CarReservation expectedResult2 = new CarReservation(
+				2,
+				"test2@email.com",
+				"Monterey",
+				"1/2/2021",
+				"Monterey",
+				"1/2/2021",
+				2
+		);
+		CarReservation expectedResult3 = new CarReservation(
+				3,
+				"test3@email.com",
+				"San Diego",
+				"1/3/2021",
+				"San Diego",
+				"1/3/2021",
+				3
+		);
+
 		List<CarReservation> expectedResult = new ArrayList<CarReservation>();
+		expectedResult.add(expectedResult1);
+		expectedResult.add(expectedResult2);
+		expectedResult.add(expectedResult3);
 
 		// Assertions
 		assertThat(resultList).isEqualTo(expectedResult);
+	}
+
+	@Test
+	public void  testCancelReservation() {
+		// create a new car reservation
+		CarReservation carReservation = new CarReservation(
+				1,
+				"test@email.com",
+				"San Diego",
+				"1/1/2021",
+				"San Diego",
+				"1/2/2021",
+				1
+		);
+
+		// stub for the CarReservationService.
+		given(carReservationService.cancelRes(1)).willReturn(carReservation);
+
+		// id to pass in for JSON body content
+		String id = "1";
+
+		// perform the test by making simulated HTTP get using URL of "/api/reservation/canccel"
+		MockHttpServletResponse response = null;
+		try {
+			response = mvc.perform(delete("/api/reservation/cancel").
+					contentType(APPLICATION_JSON_UTF8).content(id)).andReturn().getResponse();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		// verify that result is as expected
+		assertThat(response.getStatus()).isEqualTo(HttpStatus.NO_CONTENT.value());
 	}
 }
