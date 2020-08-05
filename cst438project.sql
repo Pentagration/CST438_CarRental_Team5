@@ -92,6 +92,36 @@ LOCK TABLES `cst438carRental`.`reservation` WRITE;
 /*!40000 ALTER TABLE `cst438carRental`.`reservation` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cst438carRental`.`reservation` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `customer`
+--
+
+DROP TABLE IF EXISTS `cst438carRental`.`inventory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cst438carRental`.`inventory` (
+  `type` varchar(45) ,
+  `count` int(11) DEFAULT 20,
+  PRIMARY KEY (`type`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer`
+--
+
+LOCK TABLES `cst438carRental`.`type` WRITE;
+/*!40000 ALTER TABLE `cst438carRental`.`type` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cst438carRental`.`type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+INSERT INTO 'cst438carRental'.'inventory' (type)
+VALUES ("SUV"),
+        ("Fullsize"),
+        ("Economy"),
+        ("Compact");
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
