@@ -38,7 +38,11 @@ public class CarReservationController {
   public String searchReservationsEmail(@RequestParam("email") String email, Model model) {
     //Iterable<CarReservation> reservations = carReservationRepository.findAll();
     Iterable<CarReservation> reservations = carReservationRepository.findByEmail(email);
+    CarCustomer customer = carCustomerRepository.findByEmail(email);
+    CarInfo car = carInfoRepository.findByCarID(1);
     model.addAttribute("reservations", reservations);
+    model.addAttribute("customer", customer);
+    model.addAttribute("car", car);
     return "user_reservation";
   }
 
