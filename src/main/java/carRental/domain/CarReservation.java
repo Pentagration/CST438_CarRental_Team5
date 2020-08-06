@@ -22,11 +22,12 @@ public class CarReservation {
   private String returnLocation;
   private String returnDate;
   private long carID;
+  private float total;
   public CarReservation(){}
 
   public CarReservation(long reservationID, String email,
       String pickupLocation, String pickupDate,
-      String returnLocation, String returnDate, long carID){
+      String returnLocation, String returnDate, long carID, float total){
     super();
     this.reservationID = reservationID;
     this.email = email;
@@ -35,6 +36,7 @@ public class CarReservation {
     this.returnLocation = returnLocation;
     this.returnDate = returnDate;
     this.carID = carID;
+    this.total = total;
   }
 
   public long getReservationID() {
@@ -93,9 +95,16 @@ public class CarReservation {
     this.carID = carID;
   }
 
+  public float getTotal() {
+    return total;
+  }
+
+  public void setTotal(float total) {
+    this.total = total;
+  }
+
   public void convertDate(String date, String dateType) throws ParseException {
     try {
-      //Date date = new SimpleDateFormat("yyyy-MM-dd").parse(pickupDate);
       Date dt = new SimpleDateFormat("MM/dd/yyy").parse(date);
       DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
       if (dateType.equals(pickup))
@@ -111,6 +120,6 @@ public class CarReservation {
     return "CarReservation [reservationID=" + reservationID + ",email=" + email +
         ", pickupLocation=" + pickupLocation + ", pickupDate=" + pickupDate +
         ", returnLocation=" + returnLocation + ", returnDate=" + returnDate +
-         "]";
+            ",total=" + total + "]";
   }
 }

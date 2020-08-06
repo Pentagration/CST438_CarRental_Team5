@@ -100,6 +100,7 @@
       <div id="summary">
         <h3>Total:</h3>
         <h3 id="total"></h3>
+        <input type="hidden" id="reservationTotal" th:field="${carReservation.total}"/>
       </div>
   <input type="submit" value="Submit" class="btn btn-primary">
 
@@ -124,7 +125,7 @@
     })();
   </script>
 
-  <script type="text/javascript">
+  <script th:inline = "javascript" type="text/javascript">
     $('.datepicker').datepicker({
       startDate: new Date()
     });
@@ -153,6 +154,8 @@
         if(value < 0)
           return;
         $("#summary").children("#total").text("$").append(value);
+        $("total").val(value);
+        document.getElementById('reservationTotal').value = value;
       });
     });
   </script>

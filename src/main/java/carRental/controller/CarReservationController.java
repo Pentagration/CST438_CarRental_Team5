@@ -64,7 +64,6 @@ public class CarReservationController {
   @PostMapping("/reservation/new")
   public String processCarReservation(@Valid CarReservation carReservation,@Valid CarInfo carInfo, @Valid CarCustomer carCustomer,
       BindingResult result, Model model) throws ParseException {
-    carInfo.setPrice(carInfo.getType());
     carInfoRepository.save(carInfo);
     carReservation.convertDate(carReservation.getPickupDate(), carReservation.pickup);
     carReservation.convertDate(carReservation.getReturnDate(), carReservation.dropoff);
