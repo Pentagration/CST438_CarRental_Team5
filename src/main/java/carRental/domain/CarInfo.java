@@ -12,15 +12,13 @@ public class CarInfo {
     private long carID;
     @NotEmpty
     private String type;
-    private int price;
     private boolean available;
 
     public CarInfo(){}
 
-    public CarInfo(String type, int price, boolean available){
+    public CarInfo(String type, boolean available){
         super();
         this.type = type;
-        this.price = price;
         this.available = available;
     }
 
@@ -30,14 +28,6 @@ public class CarInfo {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     public boolean isAvailable() {
@@ -59,7 +49,6 @@ public class CarInfo {
     @Override
     public String toString() {
         return "CarReservation [carId=" + carID +
-                ", type=" + type +
-                ", price=" + price + "]";
+                ", type=" + type + "]";
     }
 }

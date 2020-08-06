@@ -19,24 +19,31 @@
   <br><br>
   
   <table>
+    <tbody>
+      <tr>
+        <td>First Name:</td>
+        <td th:text="${customer.fName}"></td>
+      </tr>
+    <tr>
+      <td>Last Name:</td>
+      <td th:text="${customer.lName}"></td>
+    </tr>
+    </tbody>
+  </table>
+
+    <br>
+
+    <table>
 		<tr th:each="carReservation: ${reservations}">
 <table>
   <tbody>
     <tr>
       <td>Confirmation Number:</td>
-      <td th:text="${carReservation.customerID}"></td>
+      <td th:text="${carReservation.reservationID}"></td>
     </tr>
     <tr>
       <td>Car ID:</td>
       <td th:text="${carReservation.carID}"></td>
-    </tr>
-    <tr>
-      <td>First Name:</td>
-      <td th:text="${carReservation.fName}"></td>
-    </tr>
-    <tr>
-      <td>Last Name:</td>
-      <td th:text="${carReservation.lName}"></td>
     </tr>
     <tr>
       <td>Email:</td>
@@ -59,8 +66,8 @@
       <td th:text="${carReservation.returnDate}"></td>
     </tr>
     <tr>
-      <td>Car Type:</td>
-      <td th:text="${carReservation.type}"></td>
+      <td>Total Cost:</td>
+      <td th:text="${carReservation.total}"></td>
     </tr>
   </tbody>
 </table>

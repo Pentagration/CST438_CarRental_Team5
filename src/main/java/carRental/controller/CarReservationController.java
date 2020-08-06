@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Controller
 public class CarReservationController {
   @Autowired
@@ -33,7 +38,11 @@ public class CarReservationController {
   public String searchReservationsEmail(@RequestParam("email") String email, Model model) {
     //Iterable<CarReservation> reservations = carReservationRepository.findAll();
     Iterable<CarReservation> reservations = carReservationRepository.findByEmail(email);
+    CarCustomer customer = carCustomerRepository.findByEmail(email);
+    CarInfo car = carInfoRepository.findByCarID(1);
     model.addAttribute("reservations", reservations);
+    model.addAttribute("customer", customer);
+    model.addAttribute("car", car);
     return "user_reservation";
   }
 
@@ -58,16 +67,10 @@ public class CarReservationController {
    */
   @PostMapping("/reservation/new")
   public String processCarReservation(@Valid CarReservation carReservation,@Valid CarInfo carInfo, @Valid CarCustomer carCustomer,
-      BindingResult result, Model model){
-    if(carInfo.getType().equals("SUV"))
-      carInfo.setPrice(150);
-    else if(carInfo.getType().equals("Fullsize"))
-      carInfo.setPrice(125);
-    else if(carInfo.getType().equals("Economy"))
-      carInfo.setPrice(110);
-    else if(carInfo.getType().equals("Compact"))
-      carInfo.setPrice(5);
+      BindingResult result, Model model) throws ParseException {
     carInfoRepository.save(carInfo);
+    carReservation.convertDate(carReservation.getPickupDate(), carReservation.pickup);
+    carReservation.convertDate(carReservation.getReturnDate(), carReservation.dropoff);
     carReservation.setCarID(carInfo.getCarID());
     carReservationRepository.save(carReservation);
     carCustomerRepository.save(carCustomer);

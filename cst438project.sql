@@ -26,7 +26,6 @@ DROP TABLE IF EXISTS `cst438carRental`.`car`;
 CREATE TABLE `cst438carRental`.`car` (
   `carID` int(11) NOT NULL auto_increment,
   `type` varchar(45) DEFAULT NULL,
-  `price` int(11) DEFAULT NULL,
   `available` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`carID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -80,6 +79,7 @@ CREATE TABLE `cst438carRental`.`reservation` (
   `return_Date` date DEFAULT NULL,
   `pickup_Location` varchar(45) DEFAULT NULL,
   `return_Location` varchar(45) DEFAULT NULL,
+  `total` float(11) DEFAULT NULL,
   PRIMARY KEY (`reservationID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -92,6 +92,9 @@ LOCK TABLES `cst438carRental`.`reservation` WRITE;
 /*!40000 ALTER TABLE `cst438carRental`.`reservation` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cst438carRental`.`reservation` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -103,4 +106,3 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2020-07-19 19:16:54
-

@@ -2,11 +2,17 @@ package carRental.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 @Table(name="reservation")
 public class CarReservation {
 
+  public static final String pickup = "pickup";
+  public static final String dropoff = "dropoff";
   @Id
   @GeneratedValue
   private long reservationID;
@@ -16,13 +22,14 @@ public class CarReservation {
   private String returnLocation;
   private String returnDate;
   private long carID;
-  public CarReservation(){
-    super();
-  }
+
+  private float total;
+  public CarReservation(){}
+
 
   public CarReservation(long reservationID, String email,
       String pickupLocation, String pickupDate,
-      String returnLocation, String returnDate, long carID){
+      String returnLocation, String returnDate, long carID, float total){
     super();
     this.reservationID = reservationID;
     this.email = email;
@@ -31,6 +38,20 @@ public class CarReservation {
     this.returnLocation = returnLocation;
     this.returnDate = returnDate;
     this.carID = carID;
+    this.total = total;
+  }
+
+  public CarReservation(String email,
+      String pickupLocation, String pickupDate,
+      String returnLocation, String returnDate, long carID, float total){
+    super();
+    this.email = email;
+    this.pickupLocation = pickupLocation;
+    this.pickupDate = pickupDate;
+    this.returnLocation = returnLocation;
+    this.returnDate = returnDate;
+    this.carID = carID;
+    this.total = total;
   }
 
   @Override
@@ -130,11 +151,31 @@ public class CarReservation {
     this.carID = carID;
   }
 
+  public float getTotal() {
+    return total;
+  }
+
+  public void setTotal(float total) {
+    this.total = total;
+  }
+
+  public void convertDate(String date, String dateType) throws ParseException {
+    try {
+      Date dt = new SimpleDateFormat("MM/dd/yyy").parse(date);
+      DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+      if (dateType.equals(pickup))
+        this.pickupDate = df.format(dt);
+      else
+        this.returnDate = df.format(dt);
+    }
+    catch(ParseException e) {e.printStackTrace();}
+  }
+
   @Override
   public String toString() {
     return "CarReservation [reservationID=" + reservationID + ",email=" + email +
         ", pickupLocation=" + pickupLocation + ", pickupDate=" + pickupDate +
         ", returnLocation=" + returnLocation + ", returnDate=" + returnDate +
-         "]";
+            ",total=" + total + "]";
   }
 }
