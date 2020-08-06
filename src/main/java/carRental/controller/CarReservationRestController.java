@@ -1,7 +1,10 @@
 package carRental.controller;
 
+import carRental.domain.CarInfo;
 import carRental.domain.CarReservation;
+import carRental.domain.NewApiReservation;
 import carRental.service.CarReservationService;
+import java.text.ParseException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -69,9 +72,10 @@ public class CarReservationRestController {
 
   // this is a get method for creating a new reservation
   @PostMapping(value = "/api/reservation/new", consumes = "application/json", produces = "application/json")
-  public ResponseEntity<CarReservation> createNewCarReservation(@RequestBody CarReservation carReservation) {
+  public ResponseEntity<CarReservation> createNewCarReservation(@RequestBody NewApiReservation newApiReservation)
+      throws ParseException {
 
-    carReservation = carReservationService.newRes(carReservation);
+    CarReservation carReservation = carReservationService.newRes(newApiReservation);
 
     if (carReservation == null) {
       // reservation not found.  Send 404 return code.

@@ -8,4 +8,7 @@ public interface CarInfoRepository extends CrudRepository<CarInfo, Long> {
 
   CarInfo findByCarID(long carID);
 
+  @Query(value= "Select price from car c WHERE c.carID =?1", nativeQuery = true)
+  float findCarCost(long carID);
+
 }

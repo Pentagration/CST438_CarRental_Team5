@@ -39,6 +39,19 @@ public class CarReservation {
     this.total = total;
   }
 
+  public CarReservation(String email,
+      String pickupLocation, String pickupDate,
+      String returnLocation, String returnDate, long carID, float total){
+    super();
+    this.email = email;
+    this.pickupLocation = pickupLocation;
+    this.pickupDate = pickupDate;
+    this.returnLocation = returnLocation;
+    this.returnDate = returnDate;
+    this.carID = carID;
+    this.total = total;
+  }
+
   public long getReservationID() {
     return reservationID;
   }
