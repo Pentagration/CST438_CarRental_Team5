@@ -56,17 +56,17 @@ public class CarReservationRestController {
 
   // this is a get method for finding all reservations by email
   @GetMapping(value = "/api/reservation/email", consumes = "application/json", produces = "application/json")
-  public ResponseEntity<Iterable<CarReservation>> getEmailCarReservation(@RequestBody String email) {
+  public ResponseEntity<List<CarReservation>> getEmailCarReservation(@RequestBody String email) {
 
-    Iterable<CarReservation> carReservation = carReservationService.getResInfo(email);
+    List<CarReservation> carReservation = carReservationService.getResInfo(email);
 
     // look up city info from database.  Might be multiple cities with same name.
-    if (carReservation == null) {
+    if (carReservation.size() == 0) {
       // reservation not found.  Send 404 return code.
-      return new ResponseEntity<Iterable<CarReservation>>( HttpStatus.NOT_FOUND);
+      return new ResponseEntity<List<CarReservation>>( HttpStatus.NOT_FOUND);
     } else {
       // return 200 status code (OK) and information in JSON format
-      return new ResponseEntity<Iterable<CarReservation>>(carReservation, HttpStatus.OK);
+      return new ResponseEntity<List<CarReservation>>(carReservation, HttpStatus.OK);
     }
   }
 
