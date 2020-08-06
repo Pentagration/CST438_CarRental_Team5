@@ -33,13 +33,13 @@ public class CarReservationServiceTest {
 
 		// create a new car reservation
 		CarReservation carReservation = new CarReservation(
-				1,
 				"test@email.com",
 				"San Diego",
 				"1/1/2021",
 				"San Diego",
 				"1/2/2021",
-				1
+				1,
+				1000
 		);
 
 		// stub for the CarReservationRepository.
@@ -57,13 +57,13 @@ public class CarReservationServiceTest {
 
 		// create a new car reservation
 		CarReservation carReservation = new CarReservation(
-				1,
 				"test@email.com",
 				"San Diego",
 				"1/1/2021",
 				"San Diego",
 				"1/2/2021",
-				1
+				1,
+				1000
 		);
 
 		// stub for the CarReservationRepository.
@@ -82,13 +82,14 @@ public class CarReservationServiceTest {
 
 		// create a new car reservation
 		CarReservation carReservation1 = new CarReservation(
-				1,
+
 				"test@email.com",
 				"San Diego",
 				"1/1/2021",
 				"San Diego",
 				"1/2/2021",
-				1
+				1,
+				1000
 		);
 
 		List<CarReservation> carReservation = new ArrayList<CarReservation>();
@@ -109,13 +110,13 @@ public class CarReservationServiceTest {
 
 		// create a new car reservation
 		CarReservation carReservation1 = new CarReservation(
-				1,
 				"test@email.com",
 				"San Diego",
 				"1/1/2021",
 				"San Diego",
 				"1/2/2021",
-				1
+				1,
+				1000
 		);
 
 		List<CarReservation> carReservation = new ArrayList<CarReservation>();
@@ -136,30 +137,32 @@ public class CarReservationServiceTest {
 	public void  testAllReservations() {
 		// create 3 reservations
 		CarReservation carReservation1 = new CarReservation(
-				1,
 				"test@email.com",
-				"Honolulu",
+				"San Diego",
 				"1/1/2021",
-				"Honolulu",
+				"San Diego",
 				"1/1/2021",
-				1
+				1,
+				1000
 		);
 		CarReservation carReservation2 = new CarReservation(
-				2,
+
 				"test2@email.com",
 				"Monterey",
 				"1/2/2021",
 				"Monterey",
 				"1/2/2021",
+				2,
 				2
 		);
 		CarReservation carReservation3 = new CarReservation(
-				3,
+
 				"test3@email.com",
 				"San Diego",
 				"1/3/2021",
 				"San Diego",
 				"1/3/2021",
+				3,
 				3
 		);
 
@@ -182,13 +185,13 @@ public class CarReservationServiceTest {
 	public void  testCancelReservation() {
 		// create a new car reservation
 		CarReservation carReservation = new CarReservation(
-				1,
 				"test@email.com",
 				"San Diego",
 				"1/1/2021",
 				"San Diego",
 				"1/2/2021",
-				1
+				1,
+				1000
 		);
 
 		// stub for the CarReservationRepository.
