@@ -6,6 +6,7 @@ import carRental.domain.CarInfoRepository;
 import carRental.domain.CarReservation;
 import carRental.domain.CarReservationRepository;
 import carRental.domain.NewApiReservation;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -95,9 +96,15 @@ public class CarReservationService {
     // multiply by days
     tempCost = tempCost * diff;
 
+    Date convertPickup = new SimpleDateFormat("MM/dd/yyy").
+        parse(newApiReservation.getPickupDate());
+    Date convertDropoff = new SimpleDateFormat("MM/dd/yyy").
+        parse(newApiReservation.getReturnDate());
+    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
     CarReservation carReservation = new CarReservation (newApiReservation.getEmail(),
-        newApiReservation.getPickupLocation(), newApiReservation.getPickupDate(),
-        newApiReservation.getReturnLocation(), newApiReservation.getReturnDate(),
+        newApiReservation.getPickupLocation(), df.format(convertPickup),
+        newApiReservation.getReturnLocation(), df.format(convertDropoff),
         tempCar.getCarID(), tempCost);
 
     carInfoRepository.save(tempCar);
