@@ -12,7 +12,7 @@ public class NewApiReservation {
   public NewApiReservation() {}
 
   public NewApiReservation(String email, String pickupLocation, String pickupDate,
-      String returnLocation,String returnDate, long carID, String carType) {
+      String returnLocation,String returnDate, String carType) {
     super();
     this.email = email;
     this.pickupLocation = pickupLocation;
