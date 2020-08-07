@@ -48,7 +48,7 @@ public class CarInfo {
 
     @Override
     public String toString() {
-        return "CarReservation [carId=" + carID +
+        return "CarInfo [carId=" + carID +
                 ", type=" + type + "]";
     }
 }
