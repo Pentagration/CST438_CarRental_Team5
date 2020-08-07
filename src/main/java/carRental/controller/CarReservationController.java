@@ -6,16 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Controller
 public class CarReservationController {
@@ -36,7 +30,6 @@ public class CarReservationController {
 
   @PostMapping("")
   public String searchReservationsEmail(@RequestParam("email") String email, Model model) {
-    //Iterable<CarReservation> reservations = carReservationRepository.findAll();
     Iterable<CarReservation> reservations = carReservationRepository.findByEmail(email);
     CarCustomer customer = carCustomerRepository.findByEmail(email);
     CarInfo car = carInfoRepository.findByCarID(1);

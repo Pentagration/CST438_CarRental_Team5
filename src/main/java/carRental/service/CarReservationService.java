@@ -73,10 +73,13 @@ public class CarReservationService {
       tempCost = 5;
     }
 
+    // testing/debug statement
     System.out.println("Car type was :" + newApiReservation.getCarType());
     System.out.println("cost is :" + tempCost);
 
     CarInfo tempCar = new CarInfo (newApiReservation.getCarType(), true);
+
+    // testing/debug statement
     System.out.println("CarInfo created");
 
     // calculate total and add to carReservation
@@ -84,12 +87,14 @@ public class CarReservationService {
     Date pickup = sdf.parse(newApiReservation.getPickupDate());
     Date dropoff = sdf.parse(newApiReservation.getReturnDate());
 
+    // testing/debug statement
     System.out.println("pickup date " + pickup);
     System.out.println("dropoff date " + dropoff);
 
     long diffInMillies = Math.abs(dropoff.getTime() - pickup.getTime());
     long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
 
+    // testing/debug statement
     System.out.println(diffInMillies);
     System.out.println(diff);
 
