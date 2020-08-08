@@ -38,6 +38,18 @@
 
     </ul>
   </div>
+  <div>
+    <p><b>Reservation List</b></p>
+    <tr>
+      <th>Conf. #</th>
+      <th>Car ID</th>
+    </tr>
+    <tr th:each="carReservation : ${reservation}">
+      <td th:text="${carReservation.reservationID}"></td>
+      <td th:text="${carReservation.carID}"></td>
+    </tr>
+
+  </div>
 </div>
 <!-- Footer -->
 <br><br>
