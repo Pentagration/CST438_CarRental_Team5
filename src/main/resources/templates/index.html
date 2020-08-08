@@ -34,18 +34,29 @@
     <ul>
       <li>See the JSON sent to the trip planner system</li>
       <li>Cancel a reservation</li>
+    </ul>
 
-      <p><b>Current List of Reservations in the Car Rental Database</b></p>
+      <p><b>LISTED BELOW: Current List of Reservations in the Car Rental Database</b></p>
+    <table class="table">
+    <thead>
       <tr>
-        <th>Conf. #</th>
-        <th>Car ID</th>
+        <th scope="col">Conf. #</th>
+        <th scope="col">Email</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Pick-Up Location</th>
+        <th scope="col">Pick-Up Date</th>
+        <th scope="col">Drop-Off Location</th>
+        <th scope="col">Drop-Off Date</th>
+        <th scope="col">Car Type</th>
+        <th scope="col">Total</th>
       </tr>
+    </thead>
       <tr th:each="carReservation : ${reservation}">
         <td th:text="${carReservation.reservationID}"></td>
         <td th:text="${carReservation.carID}"></td>
       </tr>
-
-    </ul>
+    </table>
   </div>
 </div>
 <!-- Footer -->
