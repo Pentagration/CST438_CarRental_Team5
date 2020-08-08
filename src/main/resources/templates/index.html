@@ -32,23 +32,20 @@
   <div id="demo" class="collapse"><br>
     <p>This menu provides navigation to certain functions of the rental car reservation system.</p>
     <ul>
-      <li>See all entries in the rental car database</li>
       <li>See the JSON sent to the trip planner system</li>
       <li>Cancel a reservation</li>
 
-    </ul>
-  </div>
-  <div>
-    <p><b>Reservation List</b></p>
-    <tr>
-      <th>Conf. #</th>
-      <th>Car ID</th>
-    </tr>
-    <tr th:each="carReservation : ${reservation}">
-      <td th:text="${carReservation.reservationID}"></td>
-      <td th:text="${carReservation.carID}"></td>
-    </tr>
+      <p><b>Current List of Reservations in the Car Rental Database</b></p>
+      <tr>
+        <th>Conf. #</th>
+        <th>Car ID</th>
+      </tr>
+      <tr th:each="carReservation : ${reservation}">
+        <td th:text="${carReservation.reservationID}"></td>
+        <td th:text="${carReservation.carID}"></td>
+      </tr>
 
+    </ul>
   </div>
 </div>
 <!-- Footer -->
