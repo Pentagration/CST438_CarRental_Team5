@@ -15,6 +15,10 @@
 <div class="container">
   <br>
   <h2>Team 5 Rent-A-Car</h2>
+  <p><b>NOTE TO PROFESSOR</b><br>
+    From this page a user can:<ul>
+  <li>Can make a new car rental reservation</li>
+  <li><a href="/">CLICK HERE</a> to return to main car rental page</li></ul></p>
   <div class="border border-danger p-4 w-50">
     <form action="#" th:action="@{/reservation/new}"
           method="post" class="needs-validation" novalidate>
@@ -98,11 +102,11 @@
     <div class="invalid-feedback">Please select your preferred car type from the list.</div><br>
 
       <div id="summary">
-        <h3>Total:</h3>
+        <h3>Total: $</h3>
         <h3 id="total"></h3>
         <input type="hidden" id="reservationTotal" th:field="${carReservation.total}"/>
       </div>
-  <input type="submit" value="Submit" class="btn btn-primary">
+  <input type="submit" value="Submit" class="btn btn-danger">
 
   <script>
     // Disable form submissions if there are invalid fields

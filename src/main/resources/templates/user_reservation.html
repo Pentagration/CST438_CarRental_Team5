@@ -13,13 +13,13 @@
 <div class="container">
   <br>
   <h2>Team 5 Rent-A-Car</h2>
-<h2>User Reservations</h2>
+<h2>Existing User Reservations</h2>
+  <p><b>NOTE TO PROFESSOR</b><br>
+    From this page a user can:<ul>
+  <li>see their existing reservation(s) and get their confirmation number(s)</li>
+  <li><a href="/reservation/cancel">CLICK HERE</a> to go to the cancellation page</li>
+  <li><a href="/">CLICK HERE</a> to return to main car rental page</li></ul></p>
   <div class="border border-danger p-4 w-50">
-    <a href="/reservation/new" class="btn btn-danger"> New Reservation</a>
-  <br><br>
-
-    <br>
-
     <table>
 		<tr th:each="carReservation: ${reservations}">
 <table>
@@ -58,7 +58,6 @@
     </tr>
   </tbody>
 </table>
-  <br>
 		</tr>
 	</table>
 
