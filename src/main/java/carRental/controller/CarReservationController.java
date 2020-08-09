@@ -19,12 +19,14 @@ public class CarReservationController {
   private CarInfoRepository carInfoRepository;
   @Autowired
   private CarCustomerRepository carCustomerRepository;
+  @Autowired
+  private CarFullQueryRepository carFullQueryRepository;
   
   @GetMapping("")
   public String index(Model model) {
 	  String email = new String();
 	  model.addAttribute("email", email);
-	  Iterable<CarReservation> reservations = carReservationRepository.findAll();
+	  Iterable<CarFullQuery> reservations = carFullQueryRepository.findAllJoin();
 	  model.addAttribute("reservationList", reservations);
 	  return "index";
   }
