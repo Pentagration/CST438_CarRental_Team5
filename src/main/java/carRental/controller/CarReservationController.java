@@ -24,6 +24,8 @@ public class CarReservationController {
   public String index(Model model) {
 	  String email = new String();
 	  model.addAttribute("email", email);
+	  Iterable<CarReservation> reservations = carReservationRepository.findAll();
+	  model.addAttribute("reservationList", reservations);
 	  return "index";
   }
 

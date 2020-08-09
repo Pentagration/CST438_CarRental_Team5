@@ -22,7 +22,7 @@
       <a href="/reservation/new" class="btn btn-danger"> New Car Reservation</a>
     <br><br>
       <form method="post">
-      <label for="email">Enter email to search for an existing reservation </label><br>
+      <label for="email">Enter email to find your existing confirmation number </label><br>
       <input type="email" id="email" name="email">
       <input type="submit" value="Search" class="btn btn-danger">
       </form>
@@ -30,34 +30,44 @@
   <br>
   <a href="#demo" class="btn btn-info" data-toggle="collapse">GRADING MENU: Click Here</a>
   <div id="demo" class="collapse"><br>
-    <p>This menu provides navigation to certain functions of the rental car reservation system.</p>
+    <p><b>This menu provides navigation to certain functions of the rental car reservation system.</b></p>
     <ul>
-      <li>See the JSON sent to the trip planner system</li>
-      <li>Cancel a reservation</li>
+      <li>See the JSON sent to the trip planner system for a findAll query <a href="/api/reservations">CLICK HERE</a></li>
+      <li>Cancel a reservation by confirmation number <a href="/reservation/cancel">CLICK HERE</a></li>
     </ul>
 
       <p><b>LISTED BELOW: Current List of Reservations in the Car Rental Database</b></p>
     <table class="table">
     <thead>
-      <tr>
-        <th scope="col">Conf. #</th>
-        <th scope="col">Email</th>
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Pick-Up Location</th>
-        <th scope="col">Pick-Up Date</th>
-        <th scope="col">Drop-Off Location</th>
-        <th scope="col">Drop-Off Date</th>
-        <th scope="col">Car Type</th>
-        <th scope="col">Total</th>
-      </tr>
-    </thead>
-      <tr th:each="carReservation : ${reservation}">
-        <td th:text="${carReservation.reservationID}"></td>
-        <td th:text="${carReservation.carID}"></td>
-      </tr>
-    </table>
-  </div>
+<tr>
+  <th scope="col">Conf. #</th>
+  <th scope="col">Email</th>
+  <th scope="col">First Name</th>
+  <th scope="col">Last Name</th>
+  <th scope="col">Pick-Up Location</th>
+  <th scope="col">Pick-Up Date</th>
+  <th scope="col">Drop-Off Location</th>
+  <th scope="col">Drop-Off Date</th>
+  <th scope="col">Car Type</th>
+  <th></th>
+  <th scope="col">Total</th>
+</tr>
+</thead>
+  <tr th:each="reservations : ${reservationList}">
+    <td th:text="${reservations.reservationID}"></td>
+    <td th:text="${reservations.email}"></td>
+    <td></td>
+    <td></td>
+    <td th:text="${reservations.pickupLocation}"></td>
+    <td th:text="${reservations.pickupDate}"></td>
+    <td th:text="${reservations.returnLocation}"></td>
+    <td th:text="${reservations.returnDate}"></td>
+    <td></td>
+    <td>$</td>
+    <td th:text="${reservations.total}"></th></td>
+  </tr>
+  </table>
+</div>
 </div>
 <!-- Footer -->
 <br><br>
