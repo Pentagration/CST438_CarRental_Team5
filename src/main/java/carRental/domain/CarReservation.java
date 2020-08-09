@@ -1,11 +1,13 @@
 package carRental.domain;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="reservation")
@@ -173,7 +175,7 @@ public class CarReservation {
 
   @Override
   public String toString() {
-    return "CarReservation [reservationID=" + reservationID + ",email=" + email +
+    return "CarReservation [reservationID=" + reservationID + ", email=" + email +
         ", pickupLocation=" + pickupLocation + ", pickupDate=" + pickupDate +
         ", returnLocation=" + returnLocation + ", returnDate=" + returnDate +
             ",total=" + total + "]";

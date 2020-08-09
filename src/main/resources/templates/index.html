@@ -56,13 +56,13 @@
   <tr th:each="reservations : ${reservationList}">
     <td th:text="${reservations.reservationID}"></td>
     <td th:text="${reservations.email}"></td>
-    <td></td>
-    <td></td>
+    <td th:text="${reservations.fName}"></td>
+    <td th:text="${reservations.lName}"></td>
     <td th:text="${reservations.pickupLocation}"></td>
     <td th:text="${reservations.pickupDate}"></td>
     <td th:text="${reservations.returnLocation}"></td>
     <td th:text="${reservations.returnDate}"></td>
-    <td></td>
+    <td th:text="${reservations.type}"></td>
     <td>$</td>
     <td th:text="${reservations.total}"></th></td>
   </tr>
