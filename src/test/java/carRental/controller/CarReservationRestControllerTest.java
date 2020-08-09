@@ -1,25 +1,25 @@
 package carRental.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 import carRental.domain.CarReservation;
+import carRental.domain.NewApiReservation;
 import carRental.service.CarReservationService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.DataInput;
+import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.json.JacksonTester;
@@ -316,6 +316,58 @@ public class CarReservationRestControllerTest {
 	}
 
 	@Test
+	public void testNewReservation() throws ParseException {
+		// create a NewApiReservation object
+		NewApiReservation newApiReservation = new NewApiReservation(
+				"test@email.com",
+				"San Diego",
+				"1/1/2021",
+				"San Diego",
+				"1/2/2021",
+				"SUV"
+		);
+
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonInfo = "";
+		try {
+			jsonInfo = mapper.writeValueAsString(newApiReservation);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		System.out.println(jsonInfo);
+
+		// create a new car reservation
+		CarReservation carReservation = new CarReservation(
+
+				39,
+				"test@email.com",
+				"San Diego",
+				"1/1/2021",
+				"San Diego",
+				"1/2/2021",
+				0,
+				150
+		);
+
+		// stub for the CarReservationService.
+		given(carReservationService.newRes(newApiReservation)).willReturn(carReservation);
+
+		// perform the test by making simulated HTTP get using URL of "/api/reservation/new"
+		MockHttpServletResponse response = null;
+		try {
+			response = mvc.perform(post("/api/reservation/new")
+					.contentType(APPLICATION_JSON_UTF8).content(jsonInfo))
+					.andReturn().getResponse();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		// verify that result is as expected
+		assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+	}
+
+	@Test
 	public void  testCancelReservation() {
 		// create a new car reservation
 		CarReservation carReservation = new CarReservation(
@@ -335,7 +387,7 @@ public class CarReservationRestControllerTest {
 		// id to pass in for JSON body content
 		String id = "1";
 
-		// perform the test by making simulated HTTP get using URL of "/api/reservation/canccel"
+		// perform the test by making simulated HTTP get using URL of "/api/reservation/cancel"
 		MockHttpServletResponse response = null;
 		try {
 			response = mvc.perform(delete("/api/reservation/cancel").

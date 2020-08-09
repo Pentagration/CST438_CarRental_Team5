@@ -105,6 +105,9 @@ public class CarReservationRestController {
 
     CarReservation carReservation = carReservationService.newRes(newApiReservation);
 
+    // testing/debug statement
+    System.out.println(carReservation);
+
     if (carReservation == null) {
       // testing/debug statement
       System.out.println("null response");

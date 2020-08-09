@@ -69,4 +69,11 @@ public class NewApiReservation {
   public void setCarType(String carType) {
     this.carType = carType;
   }
+
+  @Override
+  public String toString() {
+    return "NewApiReservation [email=" + email + ", pickupLocation=" + pickupLocation +
+        ", pickupDate=" + pickupDate + ", returnLocation=" + returnLocation +
+        ", returnDate=" + returnDate + ",carType=" + carType + "]";
+  }
 }
