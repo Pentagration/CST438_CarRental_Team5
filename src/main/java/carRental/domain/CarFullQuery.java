@@ -12,14 +12,15 @@ public class CarFullQuery {
   @NotEmpty
   private long reservationID;
   private String email;
-  private String fName;
-  private String lName;
   private String pickupLocation;
   private String pickupDate;
   private String returnLocation;
   private String returnDate;
   private String type;
   private float total;
+
+  private String fName;
+  private String lName;
 
   public CarFullQuery() {}
 
