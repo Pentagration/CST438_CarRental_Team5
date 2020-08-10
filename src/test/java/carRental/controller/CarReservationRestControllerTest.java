@@ -315,6 +315,12 @@ public class CarReservationRestControllerTest {
 		assertThat(resultList).isEqualTo(expectedResult);
 	}
 
+	// we think the following test is written correctly, but the given statement does not
+	// seem to work as intended for some reason.  The query is still returning null as opposed
+	// to the given CarReservation object, so the test comes back as running, but due to the
+	// null return, we are getting a 404 instead of 200 response.  If we change the Service
+	// class newRes() function to be a .equals() instead of =, the test will pass, but the actual
+	// operational side does not work and the reservation is not created in the database.
 	@Test
 	public void testNewReservation() throws ParseException {
 		// create a NewApiReservation object
