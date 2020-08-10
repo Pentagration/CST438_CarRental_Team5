@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Null;
 
 @Entity
 @Table(name="fullReservation")
@@ -21,8 +20,7 @@ public class CarFullQuery {
   private String returnDate;
   private String type;
   private float total;
-
-  @Null
+  
   private String fName;
   private String lName;
 
