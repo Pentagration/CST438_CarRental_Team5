@@ -14,6 +14,6 @@ public interface CarFullQueryRepository extends CrudRepository<CarFullQuery, Lon
       + " car.type,"
       + " cast(reservation.total AS decimal(10,2)) AS total"
       + " FROM ((reservation INNER JOIN customer ON reservation.email = customer.email)"
-      + " INNER JOIN car ON reservation.carID = car.carID)", nativeQuery = true)
+      + " LEFT JOIN car ON reservation.carID = car.carID)", nativeQuery = true)
   List<CarFullQuery> findAllJoin();
 }
