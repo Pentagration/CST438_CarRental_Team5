@@ -98,8 +98,8 @@ public class CarReservationService {
     System.out.println(diffInMillies);
     System.out.println(diff);
 
-    // multiply by days
-    tempCost = tempCost * diff;
+    // multiply by days and add 1 for rental car math
+    tempCost = tempCost * (diff + 1);
 
     Date convertPickup = new SimpleDateFormat("MM/dd/yyy").
         parse(newApiReservation.getPickupDate());
