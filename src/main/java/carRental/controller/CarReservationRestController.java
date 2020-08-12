@@ -125,12 +125,12 @@ public class CarReservationRestController {
 
   // this is a delete method for deleting a reservation
   @DeleteMapping(value = "/api/reservation/cancel", consumes = "application/json")
-  public ResponseEntity<Void> cancelReservation(@RequestBody long resID) {
+  public ResponseEntity<Void> cancelReservation(@RequestBody CarReservation carReservation) {
 
     // testing/debug statement
     System.out.println("cancelling car reservation by ID");
 
-    CarReservation cancelledReservation = carReservationService.cancelRes(resID);
+    CarReservation cancelledReservation = carReservationService.cancelRes(carReservation.getReservationID());
 
     if (cancelledReservation == null) {
       // testing/debug statement
