@@ -124,7 +124,7 @@ public class CarReservationRestController {
   }
 
   // this is a delete method for deleting a reservation
-  @DeleteMapping(value = "/api/reservation/cancel", consumes = "application/json")
+  @PostMapping(value = "/api/reservation/cancel", consumes = "application/json")
   public ResponseEntity<Void> cancelReservation(@RequestBody CarReservation carReservation) {
 
     // testing/debug statement
